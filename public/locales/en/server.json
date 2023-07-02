@@ -1,0 +1,21 @@
+{
+	"userNotFound": "User with such email was not found",
+	"resetPassword": "Reset password",
+	"letterOfConfirmationSent": "Letter of confirmation was sent to your email address",
+	"article": {
+		"doesntExist": "Such article does not exist"
+	},
+	"invalidParams": "Invalid or expired link",
+	"invalidEmailOrPass": "Email or/and password is incorrect",
+	"inactiveAccount": "Your account is inactive. Please, ask admin to activate your account",
+	
+	"articleSaved": "An updated version of the article was successfully saved!",
+	"articleExists": "Article with slug {{slug}} already exists",
+	"articleLangNotFound": "Not found {{lang}} version of article",
+	
+	"spaceExceeded": "Allowed space exceeded",
+	"someFilesNotUploaded": "Some files were not uploaded, because they contain invalid characters or filename is longer than 64 characters",
+	"dirnameTaken": "Directory/file with such name already exists",
+	"dirNotExists": "Directory/file with such name does not exists",
+	"includesInvalidCharacters": "Directory/file name includes invalid characters"
+}

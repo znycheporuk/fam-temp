@@ -1,0 +1,32 @@
+{
+	"password": "Password",
+	"email": "Email",
+	"role": "Role",
+	"firstName": "First Name",
+	"lastName": "Last Name",
+	"group": "Group",
+	"superAdmin": "Super Admin",
+	"signInTitle": "Welcome back!",
+	"signInPage": "Sign In Page",
+	"doNotHaveAccount": "Do not have an account?",
+	"signUpTitle": "Sign up",
+	"signUpPage": "Sign Up Page",
+	"alreadyHaveAccount": "Already have an account?",
+	"forgotPasswordTitle": "Forgot password?",
+	"forgotPasswordPage": "Forgot Password Page",
+	"forgotPasswordBtn": "Reset password",
+	"resetPasswordTitle": "Reset password",
+	"resetPasswordPage": "Reset Password Page",
+	"resetPasswordBtn": "Update password",
+	"newPassword": "New password",
+	"roles": {
+		"teacher": "Teacher",
+		"student": "Student",
+		"admin": "Admin",
+		"contentManager": "Content Manager"
+	},
+	"validation": {
+		"userAlreadyExists": "User with such email already exists",
+		"wrongEmailOrPassword": "Wrong email or password"
+	}
+}

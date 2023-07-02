@@ -1,0 +1,39 @@
+{
+  "name": "fam-website",
+  "author": "Nycheporuk Zakhar",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "build": "remix build",
+    "dev": "remix dev -c \"bun run server.ts\"",
+    "start": "cross-env NODE_ENV=production bun run server.ts",
+    "typecheck": "tsc"
+  },
+  "dependencies": {
+    "@remix-run/css-bundle": "^1.18.0",
+    "@remix-run/node": "^1.18.0",
+    "@remix-run/react": "^1.18.0",
+    "@remix-run/server-runtime": "^1.18.0",
+    "drizzle-orm": "^0.27.0",
+    "i18next": "^23.2.6",
+    "i18next-fs-backend": "^2.1.5",
+    "i18next-http-backend": "^2.2.1",
+    "isbot": "^3.6.8",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-i18next": "^13.0.1",
+    "remix-i18next": "^5.2.0"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^1.18.0",
+    "@types/react": "^18.0.35",
+    "@types/react-dom": "^18.0.11",
+    "bun-types": "0.6.12",
+    "drizzle-kit": "^0.19.2",
+    "typescript": "^5.1.6"
+  },
+  "engines": {
+    "bun": ">=0.6.11"
+  }
+}

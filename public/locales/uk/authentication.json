@@ -1,0 +1,32 @@
+{
+	"password": "Пароль",
+	"email": "Електронна пошта",
+	"role": "Роль",
+	"firstName": "Ім'я",
+	"lastName": "Прізвище",
+	"group": "Група",
+	"superAdmin": "Супер адмін",
+	"signInTitle": "З поверненням!",
+	"signInPage": "Сторінка входу",
+	"doNotHaveAccount": "Ще не зареєстровані?",
+	"signUpTitle": "Реєстрація",
+	"signUpPage": "Сторінка реєстрації",
+	"alreadyHaveAccount": "Маєте аккаунт?",
+	"forgotPasswordTitle": "Забули пароль?",
+	"forgotPasswordPage": "Сторінка відновлення паролю",
+	"forgotPasswordBtn": "Надіслати лист",
+	"resetPasswordTitle": "Скинути пароль",
+	"resetPasswordPage": "Сторінка відновлення паролю",
+	"resetPasswordBtn": "Оновити пароль",
+	"newPassword": "Новий пароль",
+	"roles": {
+		"teacher": "Викладач",
+		"student": "Студент",
+		"admin": "Адміністратор",
+		"contentManager": "Контент Менеджер"
+	},
+	"validation": {
+		"userAlreadyExists": "Користувач з такою електронною поштою вже існує",
+		"wrongEmailOrPassword": "Неправильна електронна пошта або пароль"
+	}
+}

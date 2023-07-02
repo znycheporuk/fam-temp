@@ -1,0 +1,21 @@
+{
+	"name": "Name",
+	"roles": "Roles",
+	"createdAt": "Created at",
+	"updatedAt": "Updated at",
+	"email": "Email",
+	"status": "Status",
+	"activate": "Activate",
+	"deactivate": "Deactivate",
+	"noUserFound": "No user found...",
+	"swapRole": "Assign/unassign role:",
+	"filter": {
+		"all": "All",
+		"students": "Students",
+		"teachers": "Teachers",
+		"contentManagers": "Content Managers",
+		"admins": "Admins",
+		"active": "Active",
+		"inactive": "Inactive"
+	}
+}
