@@ -1,0 +1,38 @@
+.archive-table {
+	width: 100%;
+}
+
+.archive-table th {
+	text-align: left
+}
+
+.archive-table a {
+	color: var(--text-color);
+}
+
+.archive-table input, .file__input {
+	margin: 0;
+}
+
+.archive-table .action-buttons-container {
+	display: flex;
+	max-width: 20em;
+	gap: .5em;
+}
+
+.archive-table .action-buttons-container button {
+	width: -moz-available;
+	width: -webkit-fill-available;
+	width: available;
+}
+
+@media (max-width: 580px) {
+	.archive-table tr {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.archive-table .action-buttons-container {
+		max-width: 100%;
+	}
+}

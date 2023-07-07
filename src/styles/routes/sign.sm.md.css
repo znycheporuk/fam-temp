@@ -1,0 +1,29 @@
+
+.sign-page {
+	min-height: calc(var(--vh) - var(--header-height) - 2 * var(--sides-padding));
+}
+
+.sign-page form {
+	width: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+	main {
+		background: url('/icons/person/background-sign.svg') no-repeat bottom;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	main {
+		background: url('/icons/person/background-sign-dark.svg') no-repeat bottom;
+	}
+}
+
+.light main {
+	background: url('/icons/person/background-sign.svg') no-repeat bottom;
+}
+
+.dark main {
+	background: url('/icons/person/background-sign-dark.svg') no-repeat bottom;
+}
+

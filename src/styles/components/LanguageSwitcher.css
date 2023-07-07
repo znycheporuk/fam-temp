@@ -1,0 +1,25 @@
+.language-switcher {
+	display: flex;
+	align-items: center;
+}
+
+.language-switcher__link {
+	font-family: 'DaysOne', sans-serif;
+	color: var(--text-color);
+}
+
+a.language-switcher__link:hover::before {
+	bottom: 0;
+}
+
+.language-switcher__link:first-of-type {
+	margin-right: 0.4rem;
+}
+
+.language-switcher__link:last-of-type {
+	margin-left: 0.4rem;
+}
+
+.language-switcher__link.active {
+	color: var(--primary-color);
+}

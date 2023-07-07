@@ -1,0 +1,130 @@
+@import 'font.css';
+@import '../variables.css';
+@import '../common/index.css';
+@import '../components/index.css';
+
+html {
+	scroll-behavior: smooth;
+}
+
+body {
+	font-family: Arial, sans-serif;
+	line-height: 1.5;
+	overflow-x: hidden;
+	margin: 0;
+	transition: background-color .3s cubic-bezier(0, 0, 0.2, 1);
+	color: var(--text-color);
+	background-color: var(--background-color);
+}
+
+body * {
+	transition: var(--transition);
+}
+
+main {
+	position: relative;
+	margin-top: var(--header-height);
+	padding: var(--sides-padding);
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'DaysOne', sans-serif;
+	margin-top: .7em;
+	scroll-margin-top: calc(var(--sides-padding) + var(--header-height));
+}
+
+
+h1, .h1 {
+	font-size: 2rem;
+	line-height: 1.125em;
+}
+
+h2, .h2 {
+	font-size: 1.75rem;
+	line-height: 1.25em;
+}
+
+h3, .h3 {
+	font-size: 1.5rem;
+	line-height: 1.25em;
+}
+
+h4, .h4 {
+	font-size: 1.125rem;
+	line-height: 1.22em;
+}
+
+
+*, *:before, *:after {
+	box-sizing: border-box;
+}
+
+:focus {
+	outline: none;
+}
+
+:focus-visible, header a:focus-visible {
+	transition-duration: 0s;
+	outline: 3px solid rgba(var(--primary-color-rgb), 0.5);
+	outline-offset: 4px;
+}
+
+::selection {
+	background-color: rgba(var(--primary-color-rgb), .4);;
+}
+
+p {
+	margin-bottom: 0;
+}
+
+.container > * {
+	margin-top: 1rem;
+}
+
+.d-none {
+	display: none;
+}
+
+.flex {
+	display: flex;
+}
+
+.grid {
+	display: grid;
+}
+
+blockquote {
+	margin-left: 0;
+	padding: 0.1em 1em;
+	border-left: 3px solid var(--primary-color);
+	background-color: rgba(var(--primary-color-rgb), .1);
+}
+
+.visibly-hidden {
+	position: absolute;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	width: 1px;
+	height: 1px;
+	white-space: nowrap;
+	clip-path: inset(50%);
+}
+
+time {
+	font-size: 0.8rem;
+	opacity: 0.7;
+	color: var(--text-color);
+}
+
+.error-container {
+	padding: 1em;
+	color: var(--error-color);
+	border: 1px solid var(--error-color);
+	border-radius: var(--border-radius);
+}
+
+.page-width {
+	width: 100%;
+	max-width: var(--max-page-width);
+	margin: 0 auto;
+}

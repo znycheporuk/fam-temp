@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="https://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="https://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://localhost:3000</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/study</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/study" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/study" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/study</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/study" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/study" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/information</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/information" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/information" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/information</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/information" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/information" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/admission</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/admission</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/about</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/study/session</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/study/session" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/study/session" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/study/session</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/study/session" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/study/session" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/study/scholarship</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/study/scholarship" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/study/scholarship" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/study/scholarship</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/study/scholarship" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/study/scholarship" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/study/military-training</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/study/military-training" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/study/military-training" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/study/military-training</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/study/military-training" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/study/military-training" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/study/medical-monitoring</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/study/medical-monitoring" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/study/medical-monitoring" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/study/medical-monitoring</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/study/medical-monitoring" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/study/medical-monitoring" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/information/sites</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/information/sites" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/information/sites" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/information/sites</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/information/sites" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/information/sites" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/information/news</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/information/news" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/information/news" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/information/news</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/information/news" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/information/news" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/information/archive</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/information/archive" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/information/archive" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/information/archive</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/information/archive" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/information/archive" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/admission/second-education</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/second-education" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/second-education" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/admission/second-education</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/second-education" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/second-education" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/admission/preparatory-courses</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/preparatory-courses" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/preparatory-courses" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/admission/preparatory-courses</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/preparatory-courses" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/preparatory-courses" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/admission/postgraduate-studies</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/postgraduate-studies" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/postgraduate-studies" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/admission/postgraduate-studies</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/postgraduate-studies" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/postgraduate-studies" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/admission/magistracy</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/magistracy" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/magistracy" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/admission/magistracy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/magistracy" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/magistracy" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/admission/examination-schedule</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/examination-schedule" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/examination-schedule" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/admission/examination-schedule</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/examination-schedule" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/examination-schedule" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/admission/distance-learning</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/distance-learning" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/distance-learning" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/admission/distance-learning</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/distance-learning" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/distance-learning" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/admission/contract-education</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/contract-education" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/contract-education" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/admission/contract-education</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/contract-education" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/contract-education" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/admission/contacts</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/contacts" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/contacts" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/admission/contacts</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/contacts" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/contacts" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/admission/admission-to-the-first-year</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/admission-to-the-first-year" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/admission-to-the-first-year" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/admission/admission-to-the-first-year</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/admission-to-the-first-year" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/admission-to-the-first-year" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/admission/absent-education</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/absent-education" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/absent-education" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/admission/absent-education</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/admission/absent-education" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/admission/absent-education" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/about/trade-union</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/trade-union" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/trade-union" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/about/trade-union</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/trade-union" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/trade-union" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/about/student-self-government</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/student-self-government" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/student-self-government" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/about/student-self-government</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/student-self-government" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/student-self-government" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/about/structure</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/structure" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/structure" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/about/structure</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/structure" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/structure" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/about/specialities</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/specialities" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/specialities" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/about/specialities</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/specialities" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/specialities" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/about/research-activities</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/research-activities" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/research-activities" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/about/research-activities</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/research-activities" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/research-activities" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/about/managing</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/managing" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/managing" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/about/managing</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/managing" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/managing" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/about/international-activities</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/international-activities" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/international-activities" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/about/international-activities</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/international-activities" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/international-activities" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/about/history</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/history" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/history" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/about/history</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/history" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/history" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/uk/about/academic-council</loc>
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/academic-council" />
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/academic-council" />
+  </url>
+  <url>
+    <loc>http://localhost:3000/en/about/academic-council</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="http://localhost:3000/en/about/academic-council" />
+    <xhtml:link rel="alternate" hreflang="uk" href="http://localhost:3000/uk/about/academic-council" />
+  </url>
+</urlset>

@@ -1,0 +1,16 @@
+.role__container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.2em;
+}
+
+.role__tag {
+	font-size: 0.8rem;
+	line-height: 1;
+	display: inline-block;
+	padding: 0.3em;
+	color: var(--primary-color);
+	border: 1px solid;
+	border-radius: var(--border-radius);
+}

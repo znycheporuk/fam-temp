@@ -1,0 +1,9 @@
+.news-container {
+	display: flex;
+	justify-content: center;
+}
+
+.news {
+	width: 100%;
+	max-width: 40rem;
+}

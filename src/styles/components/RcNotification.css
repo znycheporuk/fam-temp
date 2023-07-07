@@ -1,0 +1,92 @@
+.rc-notification {
+	position: fixed;
+	z-index: 1000;
+	transform: translateX(-50%);
+}
+
+.rc-notification-notice {
+	line-height: 1.5;
+	position: relative;
+	display: block;
+	width: auto;
+	margin: 10px 0;
+	padding: 7px 20px 7px 10px;
+	border-radius: var(--border-radius);
+	background: var(--background-color);
+	box-shadow: var(--box-shadow);
+}
+
+.rc-notification-notice-closable {
+	padding-right: 20px;
+}
+
+.rc-notification-notice-close {
+	font-size: 1rem;
+	font-weight: 700;
+	line-height: 1;
+	position: absolute;
+	top: 3px;
+	right: 5px;
+	cursor: pointer;
+	text-decoration: none;
+	opacity: 0.2;
+	color: var(--text-color);
+	outline: none;
+	text-shadow: 0 1px 0 #FFF;
+	filter: alpha(opacity=20);
+}
+
+.rc-notification-notice-close-x:after {
+	content: '×';
+}
+
+.rc-notification-notice-close:hover {
+	text-decoration: none;
+	opacity: 1;
+	filter: alpha(opacity=100);
+}
+
+.rc-notification-fade-appear,
+.rc-notification-fade-enter {
+	animation-duration: 0.3s;
+	animation-play-state: paused;
+	animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+	opacity: 0;
+	animation-fill-mode: both;
+}
+
+.rc-notification-fade-leave {
+	animation-duration: 0.3s;
+	animation-play-state: paused;
+	animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+	animation-fill-mode: both;
+}
+
+.rc-notification-fade-appear.rc-notification-fade-appear-active,
+.rc-notification-fade-enter.rc-notification-fade-enter-active {
+	animation-name: rcNotificationFadeIn;
+	animation-play-state: running;
+}
+
+.rc-notification-fade-leave.rc-notification-fade-leave-active {
+	animation-name: rcDialogFadeOut;
+	animation-play-state: running;
+}
+
+@keyframes rcNotificationFadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes rcDialogFadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}

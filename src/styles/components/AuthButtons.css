@@ -1,0 +1,9 @@
+.auth-buttons {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.6rem;
+}
+
+.auth-buttons button, .auth-buttons .button {
+	flex-grow: 1;
+}

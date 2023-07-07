@@ -1,0 +1,28 @@
+.card .link--edit {
+	line-height: 1;
+	position: absolute;
+	right: 1rem;
+	bottom: 0.5rem;
+}
+
+.card__plus line {
+	fill: none;
+	stroke: var(--text-color);
+	stroke-linecap: round;
+	stroke-width: 1;
+}
+
+.card__draft {
+	position: absolute;
+	top: 1.2rem;
+	right: -1.7rem;
+	width: 7rem;
+	transform: rotate(45deg);
+	text-align: center;
+	background-color: var(--background-color);
+}
+
+.card__draft div {
+	text-align: center;
+	background-color: rgba(var(--primary-color-rgb), .4);
+}

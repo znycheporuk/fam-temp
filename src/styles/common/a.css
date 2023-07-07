@@ -1,0 +1,35 @@
+a:not(.button):focus-visible {
+	outline-offset: 1px;
+}
+
+a {
+	color: var(--primary-color);
+	border-radius: 1px;
+	-webkit-tap-highlight-color: rgba(var(--primary-color-rgb), .2);
+}
+
+a.no-pseudo, a.card__link, a.button, a.button:hover {
+	text-decoration: none;
+}
+
+main a:not(.no-pseudo, .card__link, .button):hover {
+	opacity: .6;
+}
+
+a[href^='#'] {
+	text-decoration: none;
+	color: var(--text-color);
+}
+
+article a[href^='#']:hover {
+	text-decoration: underline;
+	opacity: 1;
+}
+
+header a, footer a {
+	text-decoration: none;
+}
+
+header a:hover, footer a:hover {
+	text-decoration: underline;
+}

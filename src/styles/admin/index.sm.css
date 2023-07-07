@@ -1,0 +1,31 @@
+@import 'ArticleCard.css';
+
+.article-edit article {
+	height: calc(var(--vh) - 16rem - 2 * var(--sides-padding));
+}
+
+.article-editor {
+	height: calc(var(--vh) - 16rem - 2 * var(--sides-padding));
+}
+
+.news-edit article {
+	height: calc(var(--vh) - 13rem - 2 * var(--sides-padding));
+}
+
+.news-editor {
+	height: calc(var(--vh) - 16rem - 2 * var(--sides-padding));
+}
+
+.buttons-container {
+	flex-direction: column;
+}
+
+.buttons-container, .buttons-container button {
+	width: 100%
+}
+
+.news-edit .buttons-container {
+	order: 1;
+}
+
+

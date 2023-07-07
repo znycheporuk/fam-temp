@@ -1,0 +1,14 @@
+.news-container {
+	width: 100%;
+	max-width: 40rem;
+	margin: 0 auto;
+}
+
+.news {
+	padding: 0;
+	list-style: none;
+}
+
+.news h2 {
+	margin-bottom: 0;
+}

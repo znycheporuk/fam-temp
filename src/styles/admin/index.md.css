@@ -1,0 +1,11 @@
+.article-editor {
+	height: calc(var(--vh) - 10rem - 2 * var(--sides-padding));
+}
+
+.article-edit .buttons-container {
+	width: 100%;
+}
+
+.article-edit .buttons-container > * {
+	flex-grow: 1;
+}

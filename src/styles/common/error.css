@@ -1,0 +1,6 @@
+.validation-error {
+	font-size: 0.9em;
+	position: absolute;
+	bottom: -0.2em;
+	color: var(--error-color);
+}

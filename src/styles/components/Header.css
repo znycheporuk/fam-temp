@@ -1,0 +1,34 @@
+.header {
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	width: 100%;
+	height: var(--header-height);
+	padding: 0 var(--sides-padding);
+	background: var(--secondary-background-color);
+	box-shadow: var(--box-shadow);
+}
+
+.header > .page-width {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	height: var(--header-height);
+}
+
+.nav {
+	display: flex;
+}
+
+.nav__list {
+	display: flex;
+	flex-direction: row;
+	margin: 0;
+	padding: 0.3em;
+	list-style: none;
+	gap: 1rem;
+}
+
+.header .nav__list a:not(.active) {
+	color: var(--text-color);
+}

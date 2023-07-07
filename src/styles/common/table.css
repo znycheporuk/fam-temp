@@ -1,0 +1,34 @@
+.table__wrapper {
+	overflow-x: auto;
+	max-width: calc(100vw - 2rem);
+}
+
+table {
+	border-collapse: collapse;
+}
+
+th:not(:empty), td:not(:empty) {
+	padding: .3em;
+}
+
+tbody tr:not(:empty):first-child {
+	border-top: 2px solid transparent;
+}
+
+tbody tr:not(:empty):last-child {
+	border-bottom: 2px solid transparent;
+}
+
+tr:not(:empty):last-child {
+	padding-bottom: .2em;
+}
+
+tbody tr:nth-child(odd) {
+	border-right: 2px solid transparent;
+	border-left: 2px solid transparent;
+	background-color: rgba(var(--primary-color-rgb), .1);
+}
+
+.table__align-center td {
+	text-align: center;
+}

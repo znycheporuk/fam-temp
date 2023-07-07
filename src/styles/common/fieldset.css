@@ -1,0 +1,15 @@
+fieldset {
+	border-width: 2px;
+	border-style: solid;
+	border-color: var(--gray-color);
+	border-radius: 3em;
+}
+
+fieldset:hover, fieldset:focus-within {
+	border-color: var(--primary-color);
+}
+
+legend {
+	font-family: Arial, sans-serif;
+}
+

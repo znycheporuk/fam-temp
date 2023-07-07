@@ -1,0 +1,7 @@
+.card .link--edit {
+	opacity: 0;
+}
+
+.card:hover .link--edit, .card:focus-within .link--edit {
+	opacity: 1;
+}

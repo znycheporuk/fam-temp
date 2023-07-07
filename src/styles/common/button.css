@@ -1,0 +1,65 @@
+button, .button, .file__input {
+	font-family: 'DaysOne', sans-serif;
+	font-size: 0.95rem;
+	font-weight: 500;
+	line-height: normal;
+	display: inline-block;
+	height: fit-content;
+	padding: 0.5em 1.7em;
+	cursor: pointer;
+	text-align: center;
+	text-decoration: none;
+	color: var(--primary-color);
+	border: 0.1rem solid var(--gray-color);
+	border-radius: calc(2 * var(--border-radius));
+	background-color: transparent;
+	-webkit-tap-highlight-color: rgba(var(--primary-color-rgb), .2);
+}
+
+button:active, button:hover,
+.button:active, .button:hover,
+.file__input:active, .file__input:hover {
+	border-color: var(--primary-color);
+}
+
+button:disabled {
+	cursor: not-allowed;
+	color: var(--disabled-dark-color);
+	border-color: var(--disabled-dark-color);
+	background-color: var(--disabled-light-color);
+}
+
+
+.button--primary {
+	color: var(--background-color);
+	border: none;
+	background-color: var(--primary-color);
+}
+
+.button--primary:hover, .button--primary:active {
+	color: var(--background-color);
+	background-color: rgba(var(--primary-color-rgb), .8);
+}
+
+.button--primary:disabled {
+	color: var(--background-color);
+	border-color: var(--disabled-dark-color);
+	background-color: var(--disabled-dark-color);
+}
+
+.button--danger {
+	color: var(--error-color);
+}
+
+.button--danger:hover {
+	border-color: var(--error-color);
+}
+
+.button--danger.button--primary {
+	color: var(--background-color);
+	background-color: var(--error-color);
+}
+
+.button--danger.button--primary:hover {
+	background-color: rgba(255, 77, 79, 0.8);
+}

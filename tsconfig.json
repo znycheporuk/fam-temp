@@ -1,24 +1,38 @@
 {
-  "include": [
-    "server", "remix.env.d.ts", "**/*.ts", "**/*.tsx"],
-  "compilerOptions": {
-    "lib": ["DOM", "DOM.Iterable", "ES2019"],
-    "types": ["bun-types"],
-    "isolatedModules": true,
-    "esModuleInterop": true,
-    "jsx": "react-jsx",
-    "moduleResolution": "node",
-    "module": "esnext",
-    "resolveJsonModule": true,
-    "target": "ES2019",
-    "strict": true,
-    "allowJs": true,
-    "forceConsistentCasingInFileNames": true,
-    "baseUrl": ".",
-    "paths": {
-      "~/*": ["./src/*"]
-    },
-    // Remix takes care of building everything in `remix build`.
-    "noEmit": true,
-  }
+	"include": [
+		"remix.env.d.ts",
+		"**/*.ts",
+		"**/*.tsx"
+	],
+	"compilerOptions": {
+		"lib": [
+			"ES2022",
+			"DOM",
+			"DOM.Iterable"
+		],
+		"types": [
+			"bun-types"
+		],
+		"incremental": true,
+		"isolatedModules": true,
+		"importsNotUsedAsValues": "error",
+		"noEmit": true,
+		"allowJs": true,
+		"esModuleInterop": true,
+		"jsx": "react-jsx",
+		"moduleResolution": "node",
+		"module": "esnext",
+		"target": "es2019",
+		"strict": true,
+		"skipLibCheck": true,
+		"resolveJsonModule": true,
+		"noUncheckedIndexedAccess": true,
+		"baseUrl": ".",
+		"paths": {
+			"~/*": [
+				"./src/*"
+			]
+		},
+		"forceConsistentCasingInFileNames": true
+	}
 }

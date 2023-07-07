@@ -1,0 +1,12 @@
+.icon--big {
+	grid-row: span 2;
+}
+
+.icon--big img {
+	height: 100%;
+	transform: scale(1);
+}
+
+.flip.icon--big img {
+	transform: scale(-1, 1);
+}

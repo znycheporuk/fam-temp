@@ -1,0 +1,27 @@
+.pagination {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	column-gap: 0.5em;
+}
+
+.pagination input {
+	width: 4em;
+	margin: 0;
+}
+
+.pagination .arrow-button {
+	height: 2rem;
+	padding: 0.5rem 1rem;
+	border: none;
+}
+
+.pagination .arrow-button:hover {
+	border: none;
+	background-color: rgba(var(--primary-color-rgb), .2);
+}
+
+.pagination .arrow-button:disabled {
+	display: none;
+}
+

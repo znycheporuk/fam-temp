@@ -1,0 +1,29 @@
+.sign-page {
+	min-height: calc(var(--vh) - var(--header-height) - var(--sides-padding));
+}
+
+.sign-page button {
+	width: 100%;
+}
+
+.sign-page form label {
+	text-shadow: -1px 0 var(--background-color), 0 1px var(--background-color), 1px 0 var(--background-color), 0 -1px var(--background-color);
+}
+
+.sign-page p {
+	font-size: 0.8rem;
+	text-align: center;
+	color: var(--dynamic-gray-color);
+}
+
+h1 {
+	margin: 0 0 0.5rem;
+	color: var(--primary-color);
+}
+
+.forgot-password {
+	font-size: 0.8rem;
+	line-height: 1;
+	float: right;
+	margin-bottom: 1em;
+}

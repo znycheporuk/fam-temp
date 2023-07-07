@@ -1,0 +1,20 @@
+dt, dd {
+	display: inline;
+}
+
+dt {
+	margin-left: 0;
+	vertical-align: top;
+}
+
+dd {
+	margin-left: 0.5em;
+}
+
+dl.dt--bolder dt {
+	font-weight: bolder;
+}
+
+table ul, table ol {
+	padding-left: 1.5rem;
+}

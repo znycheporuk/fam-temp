@@ -1,0 +1,27 @@
+textarea {
+	font-family: inherit;
+	font-size: inherit;
+	position: relative;
+	margin-bottom: 1em;
+	padding: .5em;
+	resize: none;
+	color: var(--text-color);
+	border: .1rem solid var(--gray-color);
+	border-radius: var(--border-radius);
+	background-color: var(--background-color);
+}
+
+textarea:hover, textarea:active, textarea:focus {
+	border-color: var(--primary-color);
+}
+
+textarea:disabled {
+	cursor: not-allowed;
+	color: var(--disabled-dark-color);
+	border-color: var(--disabled-dark-color);
+	background-color: var(--disabled-light-color);
+}
+
+
+
+

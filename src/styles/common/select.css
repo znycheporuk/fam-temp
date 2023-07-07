@@ -1,0 +1,30 @@
+select {
+	font-size: inherit;
+	position: relative;
+	height: 2em;
+	margin-bottom: 1em;
+	padding: 0 1.8em 0 .5em;
+	cursor: pointer;
+	color: var(--text-color);
+	border: .1rem solid var(--gray-color);
+	border-radius: var(--border-radius);
+	background-color: var(--background-color);
+	background-image: linear-gradient(45deg, transparent 50%, var(--text-color) 50%),
+	linear-gradient(135deg, var(--text-color) 50%, transparent 50%);
+	background-repeat: no-repeat;
+	background-position: calc(100% - 1em) .9em, calc(100% - .7em) .9em;
+	background-size: 0.3em 0.3em, 0.3em 0.3em;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+}
+
+select:hover, select:active, select:focus {
+	border-color: var(--primary-color);
+}
+
+select:disabled {
+	cursor: not-allowed;
+	color: var(--disabled-dark-color);
+	border-color: var(--disabled-dark-color);
+	background-color: var(--disabled-light-color);
+}
