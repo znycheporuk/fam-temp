@@ -8,7 +8,7 @@ import { resolve } from "node:path";
 import { renderToReadableStream } from "react-dom/server";
 import { I18nextProvider, initReactI18next } from "react-i18next";
 import { i18nConfig } from "~/common/constants";
-import { i18next } from "~/i18next.server";
+import { i18next } from "~/services/i18next.server";
 
 
 const ABORT_DELAY = 5_000;
@@ -22,9 +22,8 @@ export default async function handleRequest(
 ) {
 	const instance = createInstance();
 	const ns = i18next.getRouteNamespaces(remixContext);
-	const url = new URL(request.url);
+	const lng = await i18next.getLocale(request);
 
-	const lng = url.pathname.startsWith("/en") ? "en" : "uk";
 	await instance
 		.use(initReactI18next)
 		.use(Backend)

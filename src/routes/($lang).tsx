@@ -1,10 +1,11 @@
 import type { LoaderArgs, V2_MetaFunction } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
+import { useTranslation } from "react-i18next";
 import { ArticleCard, ThemedIcon } from "~/common/components";
 import { ProcessorIcon } from "~/common/components/Icons";
 import { breakpoints } from "~/common/constants";
 import { parseLang } from "~/common/utils/language";
-import { db } from "~/drizzle/db.server";
+import { db } from "~/services/db.server";
 import style from "~/styles/routes/index.css";
 
 
@@ -18,14 +19,19 @@ export const meta: V2_MetaFunction<typeof loader> = ({data}) => {
 	];
 };
 
+export const handle = {
+	i18n: "homepage",
+};
+
 export const loader = async ({params}: LoaderArgs) => {
 	const lang = parseLang(params.lang);
-	const news = await db.query.news.findMany({
-		where: (news, {eq}) => eq(news.lang, lang),
-		columns: {id: true, title: true, source: true, createdAt: true},
-		orderBy: (news, {desc}) => [desc(news.createdAt)],
-		limit: 3,
+	const news = await db.news.findMany({
+		where: {lang},
+		select: {id: true, title: true, source: true, createdAt: true},
+		orderBy: {createdAt: "desc"},
+		take: 3,
 	});
+
 	return {
 		news: news.map(n => {
 			n.source = n.source.substring(0, 200) + "...";
@@ -37,13 +43,15 @@ export const loader = async ({params}: LoaderArgs) => {
 
 export default () => {
 	const {news} = useLoaderData<typeof loader>();
+	const {t} = useTranslation("homepage");
+
 	return (
 		<div className='page-width'>
 			<section className='main-block'>
 				<div>
-					<h1>Факультет Прикладної Математики</h1>
-					<p>Хочеш знати чому саме наш факультет — це те, що тобі потрібно?</p>
-					<Link className='button button--primary' to='/uk/about'>Читати</Link>
+					<h1>{t("main.h1")}</h1>
+					<p>{t("main.p")}</p>
+					<Link className='button button--primary' to='/uk/about'>{t("read")}</Link>
 				</div>
 				<ThemedIcon path='person/1' mobileWidth={breakpoints.md} />
 			</section>

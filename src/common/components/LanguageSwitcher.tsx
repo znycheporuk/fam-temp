@@ -1,10 +1,17 @@
-import { NavLink, useLocation } from '@remix-run/react';
+import { NavLink, useLocation } from "@remix-run/react";
+import { useTranslation } from "react-i18next";
+import type { TLang } from "~/types";
 
 
 export const LanguageSwitcher = () => {
 	const {pathname, search} = useLocation();
-	let ukLink = (pathname === '/en' ? '/' : pathname.replace(/[^\/][-a-zA-Z]*/, 'uk')) + search;
-	let enLink = (pathname === '/' ? '/en' : pathname.replace(/[^\/][-a-zA-Z]*/, 'en')) + search;
+	const ukLink = (pathname === "/en" ? "/" : pathname.replace(/[^\/][-a-zA-Z]*/, "uk")) + search;
+	const enLink = (pathname === "/" ? "/en" : pathname.replace(/[^\/][-a-zA-Z]*/, "en")) + search;
+	const {i18n} = useTranslation();
+
+	const onLanguageChange = async (lang: TLang) => {
+		await i18n.changeLanguage(lang);
+	};
 
 	return (
 		<span className='language-switcher'>
@@ -14,6 +21,7 @@ export const LanguageSwitcher = () => {
 	      lang='uk'
 	      hrefLang='uk'
 	      aria-label='Посилання на українську версію сайту'
+	      onClick={() => onLanguageChange("uk")}
       >
         Укр
       </NavLink>
@@ -26,6 +34,7 @@ export const LanguageSwitcher = () => {
 	      lang='en'
 	      hrefLang='en'
 	      aria-label='Link to english version of the site'
+	      onClick={() => onLanguageChange("en")}
       >
         Eng
       </NavLink>

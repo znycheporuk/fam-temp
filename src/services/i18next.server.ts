@@ -17,3 +17,8 @@ export const i18next = new RemixI18Next({
 	},
 	backend: Backend,
 });
+
+i18next.getLocale = async (request) => {
+	const url = new URL(request.url);
+	return url.pathname.startsWith("/en") ? "en" : "uk";
+};

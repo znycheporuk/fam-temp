@@ -15,6 +15,7 @@ async function hydrate() {
 		.init({
 			...i18nConfig, // spread the configuration
 			// This function detects the namespaces your routes rendered while SSR use
+			lng: document.documentElement.lang,
 			ns: getInitialNamespaces(),
 			backend: {loadPath: "/locales/{{lng}}/{{ns}}.json"},
 			detection: {
