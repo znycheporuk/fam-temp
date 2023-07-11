@@ -7,17 +7,17 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
 model User {
   id             String          @id @default(uuid())
   createdAt      DateTime        @default(now())
-  updatedAt      DateTime        @updatedAt
+  updatedAt      DateTime        @default(now()) @updatedAt
   email          String          @unique
   password       String
-  salt           String          @db.VarChar(4)
+  salt           String
   firstName      String
   lastName       String
   active         Boolean         @default(false)
@@ -26,6 +26,8 @@ model User {
   student        Student?
   contentManager ContentManager?
   resetToken     ResetToken?
+
+  @@index([email])
 }
 
 model Admin {
@@ -35,11 +37,11 @@ model Admin {
 }
 
 model Teacher {
-  user         User     @relation(fields: [userId], references: [id])
-  userId       String   @unique
-  folders      String[]
-  allowedSpace Int      @default(500000000)
-  takenSpace   Int      @default(0)
+  user         User   @relation(fields: [userId], references: [id])
+  userId       String @unique
+  folders      String
+  allowedSpace Int    @default(500000000)
+  takenSpace   Int    @default(0)
 }
 
 model Student {
@@ -54,8 +56,8 @@ model ContentManager {
 }
 
 model ResetToken {
-  user      User     @relation(fields: [userId], references: [id])
-  userId    String   @unique
+  user      User   @relation(fields: [userId], references: [id])
+  userId    String @unique
   token     String
   expiresAt BigInt
 }
@@ -65,24 +67,24 @@ model News {
   title     String
   source    String
   html      String
-  lang      String   @db.VarChar(2)
+  lang      String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Article {
-  lang        String   @db.VarChar(2)
+  lang        String
   section     String
   slug        String
   title       String
   description String
   keywords    String
   draft       Boolean  @default(true)
-  articleLang String   @db.VarChar(2)
+  articleLang String
   source      String
   html        String
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  updatedAt   DateTime @default(now()) @updatedAt
 
   @@unique([lang, section, slug])
 }
