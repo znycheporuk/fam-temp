@@ -5,7 +5,9 @@ const BUILD_PATH = "./build/index.js";
 const STATIC_PATH = "./public";
 
 const HOUR_IN_SECONDS = 60 * 60;
-const YEAR_IN_SECONDS = 365 * 24 * HOUR_IN_SECONDS;
+const DAY_IN_SECONDS = 24 * HOUR_IN_SECONDS;
+const WEEK_IN_SECONDS = 7 * DAY_IN_SECONDS;
+const YEAR_IN_SECONDS = 365 * DAY_IN_SECONDS;
 
 let build = await import(BUILD_PATH);
 
@@ -20,8 +22,7 @@ Bun.serve({
 			const filePath = STATIC_PATH + url.pathname;
 			if (await Bun.file(filePath).exists()) {
 				const file = Bun.file(filePath);
-				const maxAge = (url.pathname.startsWith("/build/") || url.pathname.startsWith("/polyfills/")) ? YEAR_IN_SECONDS : HOUR_IN_SECONDS;
-				return new Response(file, {headers: {"cache-control": `max-age=${maxAge}`}});
+				return new Response(file, {headers: {"cache-control": generateCacheControlHeader(url.pathname)}});
 			}
 		} catch {
 			console.error("Failed to serve static file", url.pathname);
@@ -44,3 +45,13 @@ Bun.serve({
 		return new Response(null, {status: 404});
 	},
 });
+
+function generateCacheControlHeader(pathname: string) {
+	if (["build", "polyfills", "images", "fonts"].some((prefix) => pathname.startsWith(`/${prefix}/`))) {
+		return `immutable, max-age=${YEAR_IN_SECONDS}`;
+	}
+	if (pathname.startsWith("/locales/")) {
+		return `max-age=${WEEK_IN_SECONDS}, stale-while-revalidate=${DAY_IN_SECONDS}`;
+	}
+	return `max-age=${HOUR_IN_SECONDS}`;
+}
