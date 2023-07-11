@@ -46,7 +46,7 @@ export interface IPolyfillAsset {type: "script" | "stylesheet", path: string}
 
 export interface IPolyfill {
 	/** min version of browser in which feature is supported, and polyfill shouldn't be loaded */
-	browsers: Record<string, string>;
+	browsers: Record<string, number>;
 	assets: IPolyfillAsset[];
 }
 

@@ -11,7 +11,13 @@ export const getPolyfills = (req: Request) => {
 
 	return polyfills.reduce((acc, polyfill) => {
 		if (!browser || !browser.name || !browser.version) return acc.concat(polyfill.assets);
-		if (polyfill.browsers[browser.name] && (browser.version >= polyfill.browsers[browser.name]!)) return acc;
+		if (polyfill.browsers[browser.name] && (browserVersionToNumber(browser.version) >= polyfill.browsers[browser.name]!)) return acc;
 		return acc.concat(polyfill.assets);
 	}, [] as IPolyfillAsset[]);
+};
+
+const browserVersionToNumber = (version: string) => {
+	const [major, minor = 0] = version.split(".");
+
+	return Number(`${major}.${minor}`);
 };

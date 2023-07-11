@@ -35,13 +35,13 @@ export const isDev = !isBrowser && process.env["NODE_ENV"] === "development";
 export const polyfills: IPolyfill[] = [
 	{
 		browsers: {
-			"Safari": "17",
-			"Mobile Safari": "17",
-			"Chrome WebView": "114",
-			"Chrome": "114",
-			"Chromium": "114",
-			"Edge": "114",
-			"Android Browser": "114",
+			"Safari": 17,
+			"Mobile Safari": 17,
+			"Chrome WebView": 114,
+			"Chrome": 114,
+			"Chromium": 114,
+			"Edge": 114,
+			"Android Browser": 114,
 		},
 		assets: [
 			{path: "/polyfills/popover.js", type: "script"},
