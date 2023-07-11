@@ -35,14 +35,17 @@ export interface IFormikContext extends IFormikInitialData {
 	setTouched: (name: string) => void;
 	reset: () => void;
 	getFieldMeta: (name: string) => ({
-		value: any,
-		error?: string,
-		touched?: boolean,
-		forceDisplay: boolean,
+		value: any;
+		error?: string;
+		touched?: boolean;
+		forceDisplay: boolean;
 	});
 }
 
-export interface IPolyfillAsset {type: "script" | "stylesheet", path: string}
+export interface IPolyfillAsset {
+	type: "script" | "stylesheet";
+	path: string;
+}
 
 export interface IPolyfill {
 	/** min version of browser in which feature is supported, and polyfill shouldn't be loaded */

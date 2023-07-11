@@ -10,6 +10,7 @@ import globalMidStylesUrl from "~/styles/global/global.md.css";
 import globalSmallStylesUrl from "~/styles/global/global.sm.css";
 import globalXLargeStylesUrl from "~/styles/global/global.xlg.css";
 import noMotionStylesUrl from "~/styles/global/nomotion.css";
+import type { TTheme } from "~/types";
 
 
 export const links: LinksFunction = () => {
@@ -32,7 +33,7 @@ export const loader = async ({request, params}: LoaderArgs) => {
 	const lang = params.lang === "en" ? "en" : "uk";
 	const polyfills = getPolyfills(request);
 
-	return {lang, user: {} as any, polyfills};
+	return {lang, user: {} as any, polyfills, theme: "" as TTheme};
 };
 
 export type IRootLoaderData = SerializeFrom<typeof loader>;

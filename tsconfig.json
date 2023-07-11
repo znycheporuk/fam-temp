@@ -10,9 +10,6 @@
 			"DOM",
 			"DOM.Iterable"
 		],
-		"types": [
-			"bun-types"
-		],
 		"incremental": true,
 		"isolatedModules": true,
 		"importsNotUsedAsValues": "error",

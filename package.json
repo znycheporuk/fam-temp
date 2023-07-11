@@ -14,7 +14,7 @@
     "db:push": "prisma generate && prisma db push"
   },
   "dependencies": {
-    "@prisma/client": "4.16.2",
+    "@prisma/client": "5.0.0",
     "@remix-run/node": "^1.18.1",
     "@remix-run/react": "^1.18.1",
     "@remix-run/server-runtime": "^1.18.1",
@@ -39,8 +39,8 @@
     "autoprefixer": "^10.4.14",
     "bun-types": "0.6.13",
     "postcss-preset-env": "^8.5.1",
-    "prisma": "^4.16.2",
-    "typescript": "^4.6.2"
+    "prisma": "^5.0.0",
+    "typescript": "^5.1.6"
   },
   "engines": {
     "bun": ">=0.6.13"
