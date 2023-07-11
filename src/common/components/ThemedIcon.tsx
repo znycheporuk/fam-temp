@@ -1,6 +1,6 @@
-import type { HTMLAttributes } from 'react';
-import { useRootLoaderData } from '~/common/hooks';
-import { cx } from '~/common/utils';
+import type { HTMLAttributes } from "react";
+import { useRootLoaderData } from "~/common/hooks";
+import { cx } from "~/common/utils";
 
 
 interface IThemedIcon extends HTMLAttributes<HTMLImageElement> {
@@ -20,20 +20,17 @@ export const ThemedIcon = ({mobileWidth = 0, className, path, ...props}: IThemed
 
 	return theme
 		? (
-			<picture className={cx('themed-icon', className)}>
+			<picture className={cx("themed-icon", className)}>
 				{!!mobileWidth && (
-					<source srcSet={theme === 'dark' ? mobileDarkSrc : mobileLightSrc}
-					        media={`(max-width: ${mobileWidth}px)`} />
+					<source srcSet={theme === "dark" ? mobileDarkSrc : mobileLightSrc} media={`(max-width: ${mobileWidth}px)`} />
 				)}
-				<img alt='' role='presentation' {...props} src={theme === 'dark' ? darkSrc : lightSrc} />
+				<img alt='' role='presentation' {...props} src={theme === "dark" ? darkSrc : lightSrc} />
 			</picture>
 		) : (
-			<picture className={cx('themed-icon', className)}>
+			<picture className={cx("themed-icon", className)}>
 				{!!mobileWidth && (<>
-					<source srcSet={mobileDarkSrc}
-					        media={`(prefers-color-scheme: dark) and (max-width: ${mobileWidth}px)`} />
-					<source srcSet={mobileLightSrc}
-					        media={`(prefers-color-scheme: light) and (max-width: ${mobileWidth}px)`} />
+					<source srcSet={mobileDarkSrc} media={`(prefers-color-scheme: dark) and (max-width: ${mobileWidth}px)`} />
+					<source srcSet={mobileLightSrc} media={`(prefers-color-scheme: light) and (max-width: ${mobileWidth}px)`} />
 				</>)}
 				<source srcSet={darkSrc} media='(prefers-color-scheme: dark)' />
 				<source srcSet={lightSrc} media='(prefers-color-scheme: light)' />

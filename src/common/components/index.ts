@@ -19,3 +19,4 @@ export { SearchFilter } from "~/common/components/SearchFilter";
 export { Select } from "~/common/components/Select";
 export { Textarea } from "~/common/components/Textarea";
 export { ThemeSwitcher } from "~/common/components/ThemeSwitcher";
+export { Polyfills } from "~/common/components/Polyfills";

@@ -1,9 +1,8 @@
-import type { Article } from '@prisma/client';
-import { writeFile } from 'fs-extra';
-import format from 'xml-formatter';
-import { getOppositeLanguage } from '~/common/utils/language';
-import { db } from '~/services/db.server';
-import type { TLang } from '~/types';
+import type { Article } from "@prisma/client";
+import format from "xml-formatter";
+import { getOppositeLanguage } from "~/common/utils/language";
+import { db } from "~/services/db.server";
+import type { TLang } from "~/types";
 
 
 const origin = process.env.ORIGIN;
@@ -18,7 +17,7 @@ const hasAlternateUrl = (article: Article, articles: Article[]) => {
 export const generateSiteMap = async () => {
 	const articles = await db.article.findMany({
 		where: {draft: false},
-		orderBy: [{section: 'desc'}, {slug: 'desc'}, {lang: 'desc'}],
+		orderBy: [{section: "desc"}, {slug: "desc"}, {lang: "desc"}],
 	});
 	const sections = Array.from(new Set(articles.map(article => article.section)));
 	const sectionUrls = sections.map(section => `
@@ -36,7 +35,7 @@ export const generateSiteMap = async () => {
 		const oppositeLang = getOppositeLanguage(article.lang as TLang);
 		const alternate = hasAlternateUrl(article, articles)
 			? `<xhtml:link rel='alternate' hreflang='${oppositeLang}' href='${origin}/${oppositeLang}/${article.section}/${article.slug}'/>`
-			: '';
+			: "";
 		return `
       <url>
         <loc>${origin}/${article.lang}/${article.section}/${article.slug}</loc>
@@ -58,18 +57,18 @@ export const generateSiteMap = async () => {
       <xhtml:link rel='alternate' hreflang='en' href='${origin}/en'/>
       <xhtml:link rel='alternate' hreflang='uk' href='${origin}'/>
     </url>
-    ${sectionUrls.join('')}
-    ${articlesUrls.join('')}
+    ${sectionUrls.join("")}
+    ${articlesUrls.join("")}
   </urlset>
   `;
 
-	await writeFile(`${process.cwd()}/public/sitemap.xml`, format(sitemap, {
+	await Bun.write(`${process.cwd()}/public/sitemap.xml`, format(sitemap, {
 		whiteSpaceAtEndOfSelfclosingTag: true,
-		indentation: '  ',
+		indentation: "  ",
 		collapseContent: true,
-		lineSeparator: '\n',
+		lineSeparator: "\n",
 	}));
-	await writeFile(`${process.cwd()}/public/robots.txt`, `User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`);
+	await Bun.write(`${process.cwd()}/public/robots.txt`, `User-agent: *\nAllow: /\n\nSitemap: ${origin}/sitemap.xml\n`);
 };
 
 
@@ -80,7 +79,7 @@ declare global {
 if (!global.__sitemapGenerated) {
 	(async () => {
 		try {
-			console.info('Generating sitemap.xml');
+			console.info("Generating sitemap.xml");
 			await generateSiteMap();
 			global.__sitemapGenerated = true;
 		} catch (err) {

@@ -1,4 +1,6 @@
-.menu__button {
+#menu-button {
+	position: relative;
+	width: 2rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -6,11 +8,6 @@
 	border: none;
 	background-color: transparent;
 	-webkit-tap-highlight-color: transparent;
-}
-
-#menu-button {
-	position: relative;
-	width: 2rem;
 }
 
 #menu-button:focus-visible {
@@ -23,8 +20,7 @@
 	outline-offset: 0;
 }
 
-
-.menu__button svg {
+#menu-button svg {
 	position: absolute;
 	right: -0.5rem;
 	width: 3rem;
@@ -33,46 +29,63 @@
 	stroke-linecap: round;
 }
 
-.menu__button svg rect {
+#menu-button svg rect {
 	fill: var(--primary-color);
 }
 
-.menu__button svg * {
+#menu-button svg * {
 	transition-duration: 0.2s;
 }
 
-[aria-expanded='true'] #menu__rect-1 {
+
+.menu__popup:popover-open + #menu-button #menu__rect-1 {
 	transform: translate(-3px, 20.5px) rotate(-45deg);
 }
 
-[aria-expanded='true'] #menu__rect-2 {
+.menu__popup:popover-open + #menu-button #menu__rect-2 {
 	opacity: 0;
 }
 
-[aria-expanded='true'] #menu__rect-3 {
+.menu__popup:popover-open + #menu-button #menu__rect-3 {
 	transform: translate(20px, -10.5px) rotate(45deg);
 }
 
+.menu__popup.\:popover-open + #menu-button #menu__rect-1 {
+	transform: translate(-3px, 20.5px) rotate(-45deg);
+}
 
-.menu__popup {
-	position: absolute;
-	z-index: 1;
+.menu__popup.\:popover-open + #menu-button #menu__rect-2 {
+	opacity: 0;
+}
+
+.menu__popup.\:popover-open + #menu-button #menu__rect-3 {
+	transform: translate(20px, -10.5px) rotate(45deg);
+}
+
+.menu__popup:popover-open {
 	top: var(--header-height);
 	right: max(calc(50% - var(--max-page-width) / 2 - 1rem), 0px);
+	left: unset;
 	width: 100vw;
 	height: calc(var(--vh) - var(--header-height));
 	margin: 0;
 	padding: 0;
-	transition: var(--transition), transform 0.25s linear, opacity 0.25s linear;
-	transform: translateY(3rem);
-	opacity: 0;
 	background-color: var(--secondary-background-color);
+	border: 0 transparent;
 }
 
-.menu__popup.in.expanded {
-	transform: translateY(0);
-	opacity: 1;
+.menu__popup.\:popover-open {
+	top: var(--header-height);
+	right: max(calc(50% - var(--max-page-width) / 2 - 1rem), 0px);
+	left: unset;
+	width: 100vw;
+	height: calc(var(--vh) - var(--header-height));
+	margin: 0;
+	padding: 0;
+	background-color: var(--secondary-background-color);
+	border: 0 transparent;
 }
+
 
 .menu__popup-content {
 	display: grid;

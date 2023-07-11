@@ -1,8 +1,8 @@
-import { NavLink } from '@remix-run/react';
-import { useTranslation } from 'react-i18next';
-import { existingSections } from '~/common/constants';
-import { useRootLoaderData } from '~/common/hooks';
-import { cx } from '~/common/utils';
+import { NavLink } from "@remix-run/react";
+import { useTranslation } from "react-i18next";
+import { existingSections } from "~/common/constants";
+import { useRootLoaderData } from "~/common/hooks";
+import { cx } from "~/common/utils";
 
 
 export const NavBar = ({isPopup = false}) => {
@@ -10,7 +10,7 @@ export const NavBar = ({isPopup = false}) => {
 	const {lang} = useRootLoaderData();
 
 	return (
-		<nav className={cx('nav', isPopup ? 'xlg:none' : 'd-none xlg:flex')}>
+		<nav className={cx("nav", isPopup ? "xlg:none" : "d-none xlg:flex")}>
 			<ul className='nav__list'>
 				{existingSections.map(section => (
 					<li key={section} className='nav__list-item'>

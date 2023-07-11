@@ -1,10 +1,10 @@
-import type { settings } from '~/common/hooks/useSettingsReducer';
+import type { settings } from "~/common/hooks/useSettingsReducer";
 
 
 export type InferActionsTypes<T> = T extends {[key: string]: (...args: Array<any>) => infer U} ? U : never
 
-export type TTheme = 'light' | 'dark' | ''
-export type TLang = 'en' | 'uk'
+export type TTheme = "light" | "dark" | ""
+export type TLang = "en" | "uk"
 
 
 export interface IArticleCard {
@@ -16,7 +16,7 @@ export interface IArticleCard {
 
 
 export interface ISettings {
-	theme: TTheme | '';
+	theme: TTheme | "";
 }
 
 export type TSettingsAction = InferActionsTypes<typeof settings>
@@ -40,5 +40,13 @@ export interface IFormikContext extends IFormikInitialData {
 		touched?: boolean,
 		forceDisplay: boolean,
 	});
+}
+
+export interface IPolyfillAsset {type: "script" | "stylesheet", path: string}
+
+export interface IPolyfill {
+	/** min version of browser in which feature is supported, and polyfill shouldn't be loaded */
+	browsers: Record<string, string>;
+	assets: IPolyfillAsset[];
 }
 
