@@ -4,18 +4,25 @@ import { useTranslation } from "react-i18next";
 import { ArticleCard, ThemedIcon } from "~/common/components";
 import { ProcessorIcon } from "~/common/components/Icons";
 import { breakpoints } from "~/common/constants";
+import { useRootLoaderData } from "~/common/hooks";
 import { parseLang } from "~/common/utils/language";
 import { db } from "~/services/db.server";
 import style from "~/styles/routes/index.css";
 
 
 export const links = () => ([
+	{rel: "preload", href: "/fonts/Pi.woff2", as: "font", type: "font/woff2", crossOrigin: "anonymous"},
 	{rel: "stylesheet", href: style},
 ]);
 
 export const meta: V2_MetaFunction<typeof loader> = ({data}) => {
+	const {t} = useTranslation("homepage");
+
 	return [
-		{property: "description", content: "Факультет Прикладної Математики"},
+		{title: t("meta.title")},
+		{property: "description", content: t("meta.description")},
+		{property: "og:title", content: t("main.h1")},
+		{property: "og:description", content: t("main.p")},
 	];
 };
 
@@ -42,6 +49,7 @@ export const loader = async ({params}: LoaderArgs) => {
 
 
 export default () => {
+	const {lang} = useRootLoaderData();
 	const {news} = useLoaderData<typeof loader>();
 	const {t} = useTranslation("homepage");
 
@@ -51,55 +59,55 @@ export default () => {
 				<div>
 					<h1>{t("main.h1")}</h1>
 					<p>{t("main.p")}</p>
-					<Link className='button button--primary' to='/uk/about'>{t("read")}</Link>
+					<Link className='button button--primary' to='/uk/about'>{t("main.more")}</Link>
 				</div>
 				<ThemedIcon path='person/1' mobileWidth={breakpoints.md} />
 			</section>
 
 			<section className='specialities-block'>
-				<h2>Спеціальності</h2>
+				<h2>{t("specialities.h2")}</h2>
 				<div className='specialities'>
 					<ArticleCard
 						img={<span className='card__img pi' aria-hidden={true}>π</span>}
-						title='113 — Прикладна математика'
-						link='/uk/about/specialities#spetsialnist-113-prykladna-matematyka'
-						description='Освітня програма: “Наука про дані (Data Science) та математичне моделювання”'
+						title={t("specialities.113.title")}
+						link={`/${lang}/about/specialities#spetsialnist-113-prykladna-matematyka`}
+						description={t("specialities.113.description")}
 						draft={false}
 					/>
 					<ArticleCard
 						img={<span className='card__img' aria-hidden={true}>{"{ }"}</span>}
-						title='121 — Інженерія програмного забезпечення'
-						link='/uk/about/specialities#spetsialnist-121-inzheneriia-prohramnoho-zabezpechennia'
-						description='Освітня програма: “Інженерія програмного забезпечення мультимедійних та інформаційно-пошукових систем”'
+						title={t("specialities.121.title")}
+						link={`/${lang}/about/specialities#spetsialnist-121-inzheneriia-prohramnoho-zabezpechennia`}
+						description={t("specialities.121.description")}
 						draft={false}
 					/>
 					<ArticleCard
 						img={<span className='card__img' aria-hidden={true}><ProcessorIcon /></span>}
-						title='123 — Компʼютерна інженерія'
-						link='/uk/about/specialities#spetsialnist-123-kompiuterna-inzheneriia'
-						description='Освітня програма: “Системне програмування та спеціалізовані комп’ютерні системи”'
+						title={t("specialities.123.title")}
+						link={`/${lang}/about/specialities#spetsialnist-123-kompiuterna-inzheneriia`}
+						description={t("specialities.123.description")}
 						draft={false}
 					/>
 				</div>
 				<div>
-					<Link className='button' to='/uk/about/specialities'>Детальніше</Link>
+					<Link className='button' to={`/${lang}/about/specialities`}>{t("specialities.more")}</Link>
 				</div>
 			</section>
 
 			<section className='news-block'>
-				<h2>Новини</h2>
+				<h2>{t("news.h2")}</h2>
 				<div className='news-container'>
 					{news.map(n => <ArticleCard
 						key={n.id}
 						title={n.title}
 						description={n.source}
 						draft={false}
-						link={`/uk/information/news/${n.id}`}
+						link={`/${lang}/information/news/${n.id}`}
 					/>)}
 				</div>
 				<ThemedIcon path='person/8' />
 
-				<Link className='button button--primary' to='/uk/information/news'>Більше новин</Link>
+				<Link className='button button--primary' to={`/${lang}/information/news`}>{t("news.more")}</Link>
 			</section>
 		</div>
 	);

@@ -1,4 +1,5 @@
 import { broadcastDevReady, createRequestHandler } from "@remix-run/server-runtime";
+import { isDev } from "~/common/constants";
 
 
 const BUILD_PATH = "./build/index.js";
@@ -51,7 +52,7 @@ function generateCacheControlHeader(pathname: string) {
 		return `immutable, max-age=${YEAR_IN_SECONDS}`;
 	}
 	if (pathname.startsWith("/locales/")) {
-		return `max-age=${WEEK_IN_SECONDS}, stale-while-revalidate=${DAY_IN_SECONDS}`;
+		return isDev ? "max-age=0, no-cache, no-store, must-revalidate" : `max-age=${WEEK_IN_SECONDS}, stale-while-revalidate=${DAY_IN_SECONDS}`;
 	}
 	return `max-age=${HOUR_IN_SECONDS}`;
 }
