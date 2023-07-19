@@ -1,10 +1,9 @@
 import type { LoaderArgs, V2_MetaFunction } from "@remix-run/node";
-import { Link, useLoaderData } from "@remix-run/react";
+import { Link, useLoaderData, useParams } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import { ArticleCard, ThemedIcon } from "~/common/components";
 import { ProcessorIcon } from "~/common/components/Icons";
 import { breakpoints } from "~/common/constants";
-import { useRootLoaderData } from "~/common/hooks";
 import { parseLang } from "~/common/utils/language";
 import { db } from "~/services/db.server";
 import style from "~/styles/routes/index.css";
@@ -15,7 +14,7 @@ export const links = () => ([
 	{rel: "stylesheet", href: style},
 ]);
 
-export const meta: V2_MetaFunction<typeof loader> = ({data}) => {
+export const meta: V2_MetaFunction<typeof loader> = () => {
 	const {t} = useTranslation("homepage");
 
 	return [
@@ -49,40 +48,40 @@ export const loader = async ({params}: LoaderArgs) => {
 
 
 export default () => {
-	const {lang} = useRootLoaderData();
+	const {lang} = useParams();
 	const {news} = useLoaderData<typeof loader>();
 	const {t} = useTranslation("homepage");
 
 	return (
-		<div className='page-width'>
-			<section className='main-block'>
+		<div className="page-width">
+			<section className="main-block">
 				<div>
 					<h1>{t("main.h1")}</h1>
 					<p>{t("main.p")}</p>
-					<Link className='button button--primary' to='/uk/about'>{t("main.more")}</Link>
+					<Link className="button button--primary" to="/uk/about">{t("main.more")}</Link>
 				</div>
-				<ThemedIcon path='person/1' mobileWidth={breakpoints.md} />
+				<ThemedIcon path="person/1" mobileWidth={breakpoints.md} />
 			</section>
 
-			<section className='specialities-block'>
+			<section className="specialities-block">
 				<h2>{t("specialities.h2")}</h2>
-				<div className='specialities'>
+				<div className="specialities">
 					<ArticleCard
-						img={<span className='card__img pi' aria-hidden={true}>π</span>}
+						img={<span className="card__img pi" aria-hidden={true}>π</span>}
 						title={t("specialities.113.title")}
 						link={`/${lang}/about/specialities#spetsialnist-113-prykladna-matematyka`}
 						description={t("specialities.113.description")}
 						draft={false}
 					/>
 					<ArticleCard
-						img={<span className='card__img' aria-hidden={true}>{"{ }"}</span>}
+						img={<span className="card__img" aria-hidden={true}>{"{ }"}</span>}
 						title={t("specialities.121.title")}
 						link={`/${lang}/about/specialities#spetsialnist-121-inzheneriia-prohramnoho-zabezpechennia`}
 						description={t("specialities.121.description")}
 						draft={false}
 					/>
 					<ArticleCard
-						img={<span className='card__img' aria-hidden={true}><ProcessorIcon /></span>}
+						img={<span className="card__img" aria-hidden={true}><ProcessorIcon /></span>}
 						title={t("specialities.123.title")}
 						link={`/${lang}/about/specialities#spetsialnist-123-kompiuterna-inzheneriia`}
 						description={t("specialities.123.description")}
@@ -90,13 +89,13 @@ export default () => {
 					/>
 				</div>
 				<div>
-					<Link className='button' to={`/${lang}/about/specialities`}>{t("specialities.more")}</Link>
+					<Link className="button" to={`/${lang}/about/specialities`}>{t("specialities.more")}</Link>
 				</div>
 			</section>
 
-			<section className='news-block'>
+			<section className="news-block">
 				<h2>{t("news.h2")}</h2>
-				<div className='news-container'>
+				<div className="news-container">
 					{news.map(n => <ArticleCard
 						key={n.id}
 						title={n.title}
@@ -105,9 +104,9 @@ export default () => {
 						link={`/${lang}/information/news/${n.id}`}
 					/>)}
 				</div>
-				<ThemedIcon path='person/8' />
+				<ThemedIcon path="person/8" />
 
-				<Link className='button button--primary' to={`/${lang}/information/news`}>{t("news.more")}</Link>
+				<Link className="button button--primary" to={`/${lang}/information/news`}>{t("news.more")}</Link>
 			</section>
 		</div>
 	);

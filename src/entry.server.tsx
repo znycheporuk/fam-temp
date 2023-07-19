@@ -8,7 +8,7 @@ import { resolve } from "node:path";
 import { renderToReadableStream } from "react-dom/server";
 import { I18nextProvider, initReactI18next } from "react-i18next";
 import { i18nConfig } from "~/common/constants";
-import { i18next } from "~/services/i18next.server";
+import { i18n } from "~/services/i18n.server";
 
 
 const ABORT_DELAY = 5_000;
@@ -21,8 +21,8 @@ export default async function handleRequest(
 	loadContext: AppLoadContext,
 ) {
 	const instance = createInstance();
-	const ns = i18next.getRouteNamespaces(remixContext);
-	const lng = await i18next.getLocale(request);
+	const ns = i18n.getRouteNamespaces(remixContext);
+	const lng = await i18n.getLocale(request);
 
 	await instance
 		.use(initReactI18next)

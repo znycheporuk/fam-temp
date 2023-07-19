@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
-import { isBrowser } from '~/common/constants';
+import { useEffect, useState } from "react";
+import { isBrowser } from "~/common/constants";
 
 
-const prefersReducedMotion = isBrowser && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const prefersReducedMotion = isBrowser && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 
 export const useMountTransition = (isMounted: boolean, unmountDelay: number) => {

@@ -1,4 +1,4 @@
-import type { settings } from "~/common/hooks/useSettingsReducer";
+import type { Admin, ContentManager, Student, Teacher, User } from "@prisma/client";
 
 
 export type InferActionsTypes<T> = T extends {[key: string]: (...args: Array<any>) => infer U} ? U : never
@@ -15,21 +15,14 @@ export interface IArticleCard {
 }
 
 
-export interface ISettings {
-	theme: TTheme | "";
-}
-
-export type TSettingsAction = InferActionsTypes<typeof settings>
-export type TSettingsDispatch = (action: TSettingsAction) => void
-
-export interface IFormikInitialData {
+export interface IFormInitialData {
 	errors: Record<string, string>;
 	values: Record<string, any>;
 	touched: Record<string, boolean>;
 	forceDisplay: boolean;
 }
 
-export interface IFormikContext extends IFormikInitialData {
+export interface IFormContext extends IFormInitialData {
 	isValid: boolean;
 	setValue: (name: string, value: any) => void;
 	setTouched: (name: string) => void;
@@ -39,6 +32,7 @@ export interface IFormikContext extends IFormikInitialData {
 		error?: string;
 		touched?: boolean;
 		forceDisplay: boolean;
+		defaultValue?: string | number | boolean;
 	});
 }
 
@@ -53,3 +47,11 @@ export interface IPolyfill {
 	assets: IPolyfillAsset[];
 }
 
+export type TUser = Partial<Omit<User, "createdAt" | "updatedAt">> & {
+	createdAt?: string | Date,
+	updatedAt?: string | Date,
+	student?: Student | null,
+	teacher?: Teacher | null,
+	admin?: Admin | null,
+	contentManager?: ContentManager | null
+}

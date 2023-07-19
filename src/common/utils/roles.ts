@@ -1,4 +1,4 @@
-import type { TUser } from '~/types';
+import type { TUser } from "~/types";
 
 
 export const isAdmin = (user: TUser | null) => !!user?.admin;

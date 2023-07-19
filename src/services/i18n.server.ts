@@ -3,7 +3,7 @@ import { RemixI18Next } from "remix-i18next";
 import { i18nConfig } from "~/common/constants";
 
 
-export const i18next = new RemixI18Next({
+export const i18n = new RemixI18Next({
 	detection: {
 		supportedLanguages: i18nConfig.supportedLngs,
 		fallbackLanguage: i18nConfig.fallbackLng,
@@ -16,7 +16,7 @@ export const i18next = new RemixI18Next({
 	},
 });
 
-i18next.getLocale = async (request) => {
+i18n.getLocale = async (request) => {
 	const url = new URL(request.url);
 	return url.pathname.startsWith("/en") ? "en" : "uk";
 };

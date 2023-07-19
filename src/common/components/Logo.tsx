@@ -1,5 +1,6 @@
 import { Link, useParams } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
+import { langLink } from "~/common/utils";
 
 
 export const Logo = () => {
@@ -7,7 +8,7 @@ export const Logo = () => {
 	const {lang} = useParams();
 
 	return (
-		<Link to={lang === "en" ? "/en" : "/"} className='logo' aria-label={t("aria.logo")}>
+		<Link to={langLink(lang)} className="logo" aria-label={t("aria.logo")}>
 			{t("FPM")}
 		</Link>
 	);

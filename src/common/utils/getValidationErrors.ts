@@ -1,4 +1,4 @@
-import type { ValidationError } from 'yup';
+import type { ValidationError } from "yup";
 
 
 export const getValidationErrors = (error: ValidationError): Record<string, string> => {

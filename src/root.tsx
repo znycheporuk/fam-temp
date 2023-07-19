@@ -1,8 +1,18 @@
-import type { LinksFunction, LoaderArgs, SerializeFrom } from "@remix-run/node";
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useLoaderData } from "@remix-run/react";
-import { useChangeLanguage } from "remix-i18next";
+import type { LinksFunction, LoaderArgs, SerializeFrom, V2_MetaFunction } from "@remix-run/node";
+import {
+	Links,
+	LiveReload,
+	Meta,
+	Outlet,
+	Scripts,
+	ScrollRestoration,
+	useLoaderData,
+	useParams,
+} from "@remix-run/react";
+import { useTranslation } from "react-i18next";
 import { Footer, Header, Polyfills } from "~/common/components";
 import { mediaQueries } from "~/common/constants";
+import { parseLang } from "~/common/utils";
 import { getPolyfills } from "~/services/polyfills.server";
 import globalStylesUrl from "~/styles/global/global.css";
 import globalLargeStylesUrl from "~/styles/global/global.lg.css";
@@ -25,28 +35,35 @@ export const links: LinksFunction = () => {
 	];
 };
 
+export const meta: V2_MetaFunction<typeof loader> = () => {
+	const {t} = useTranslation();
+	return [
+		{title: t("FAM")},
+	];
+};
+
 export const handle = {
 	i18n: "common",
 };
 
-export const loader = async ({request, params}: LoaderArgs) => {
-	const lang = params.lang === "en" ? "en" : "uk";
+
+export const loader = async ({request}: LoaderArgs) => {
 	const polyfills = getPolyfills(request);
 
-	return {lang, user: {} as any, polyfills, theme: "" as TTheme};
+	return {user: null as any, polyfills, theme: "" as TTheme};
 };
 
 export type IRootLoaderData = SerializeFrom<typeof loader>;
 
-export default function App() {
-	const {lang, polyfills} = useLoaderData<typeof loader>();
-	useChangeLanguage(lang);
+export default () => {
+	const {polyfills} = useLoaderData<typeof loader>();
+	const {lang} = useParams();
 
 	return (
-		<html lang={lang}>
+		<html lang={parseLang(lang)}>
 			<head>
-				<meta charSet='utf-8' />
-				<meta name='viewport' content='width=device-width,initial-scale=1' />
+				<meta charSet="utf-8" />
+				<meta name="viewport" content="width=device-width,initial-scale=1" />
 				<Meta />
 				<Polyfills assets={polyfills} />
 				<Links />

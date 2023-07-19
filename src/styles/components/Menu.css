@@ -1,9 +1,9 @@
 #menu-button {
 	position: relative;
-	width: 2rem;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	width: 2rem;
 	padding: 0;
 	border: none;
 	background-color: transparent;
@@ -70,8 +70,8 @@
 	height: calc(var(--vh) - var(--header-height));
 	margin: 0;
 	padding: 0;
-	background-color: var(--secondary-background-color);
 	border: 0 transparent;
+	background-color: var(--secondary-background-color);
 }
 
 .menu__popup.\:popover-open {
@@ -82,8 +82,8 @@
 	height: calc(var(--vh) - var(--header-height));
 	margin: 0;
 	padding: 0;
-	background-color: var(--secondary-background-color);
 	border: 0 transparent;
+	background-color: var(--secondary-background-color);
 }
 
 

@@ -1,5 +1,5 @@
-import { HTMLProps, ReactElement, useEffect } from 'react';
-import { useFormikContext } from '~/common/hooks';
+import { HTMLProps, ReactElement, useEffect } from "react";
+import { useFormContext } from "~/common/hooks";
 
 
 interface IProps extends HTMLProps<HTMLSelectElement> {
@@ -9,12 +9,14 @@ interface IProps extends HTMLProps<HTMLSelectElement> {
 }
 
 const Select = ({name, label, children, defaultValue, ...props}: IProps) => {
-	const {getFieldMeta, setValue, setTouched} = useFormikContext();
-	const {error, value, touched, forceDisplay} = getFieldMeta(name);
+	const context = useFormContext();
+	// checks are needed to use component without FormContext
+	const {getFieldMeta, setValue, setTouched} = context ?? {};
+	const {error, value, touched, forceDisplay} = getFieldMeta?.(name) ?? {};
 
 	const onChange = (e: any) => {
 		setValue(name, e.target.value);
-		!touched && setTouched(name);
+		!touched && setTouched?.(name);
 	};
 
 	useEffect(() => {
@@ -22,12 +24,12 @@ const Select = ({name, label, children, defaultValue, ...props}: IProps) => {
 	}, []);
 
 	return (
-		<label className='grid'>
+		<label className="grid">
 			{label}
-			<select defaultValue={value} value={value ?? ''} {...props} name={name} onChange={onChange}>
+			<select defaultValue={value} value={value ?? ""} {...props} name={name} onChange={onChange}>
 				{children}
 			</select>
-			{error && (touched || forceDisplay) && <em className='validation-error'>{error}</em>}
+			{error && (touched || forceDisplay) && <em className="validation-error">{error}</em>}
 		</label>
 	);
 };

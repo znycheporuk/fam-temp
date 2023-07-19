@@ -1,4 +1,4 @@
-import { json } from '@remix-run/node';
+import { json } from "@remix-run/node";
 
 
 export const badRequest = <T>(body?: T) => json(body, {status: 400});

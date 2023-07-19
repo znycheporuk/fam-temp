@@ -29,12 +29,6 @@ Bun.serve({
 			console.error("Failed to serve static file", url.pathname);
 		}
 
-		// add support for `method` query param to support RESTful forms
-		const transformMethod = url.searchParams.get("_method");
-		if (transformMethod && request.method !== transformMethod && request.headers.get("content-type")?.startsWith("application/x-www-form-urlencoded")) {
-			request = new Request(request, {method: transformMethod});
-		}
-
 		build = await import(BUILD_PATH);
 		const handler = createRequestHandler(build, process.env.NODE_ENV);
 

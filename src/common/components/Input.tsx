@@ -1,5 +1,6 @@
-import type { HTMLProps } from 'react';
-import { useFormikContext } from '~/common/hooks';
+import type { HTMLProps } from "react";
+import { useFormContext } from "~/common/hooks";
+import { toKebabCase } from "~/common/utils";
 
 
 interface IProps extends HTMLProps<HTMLInputElement> {
@@ -9,25 +10,30 @@ interface IProps extends HTMLProps<HTMLInputElement> {
 }
 
 export const Input = ({label, name, labelStyle, ...props}: IProps) => {
-	const {getFieldMeta, setValue, setTouched} = useFormikContext();
-	const {error, value, touched, forceDisplay} = getFieldMeta(name);
+	const context = useFormContext();
+	const {getFieldMeta, setValue, setTouched} = context ?? {};
+	const {error, touched, forceDisplay, defaultValue} = getFieldMeta?.(name) ?? {};
 
 	const onChange = (e: any) => {
 		props.onChange?.(e);
-		setValue(name, e.target.value);
+		setValue?.(name, e.target.value);
 	};
 
+	const id = toKebabCase(name);
+
 	return (
-		<label className='grid' style={labelStyle}>
+		<label className="grid" style={labelStyle}>
 			{label}
 			<input
-				name={name} {...props}
+				id={id}
+				name={name}
+				defaultValue={defaultValue as string | undefined}
 				onChange={onChange}
-				onBlur={() => !touched && setTouched(name)}
-				value={value ?? ''}
+				onBlur={() => !touched && setTouched?.(name)}
 				aria-invalid={!!error}
+				aria-describedby={error ? `${id}-error` : undefined}
 			/>
-			{error && (touched || forceDisplay) && <em className='validation-error'>{error}</em>}
+			{error && (touched || forceDisplay) && <em id={`${id}-error`} className="validation-error">{error}</em>}
 		</label>
 	);
 };

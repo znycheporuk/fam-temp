@@ -30,7 +30,8 @@
     "react-i18next": "^13.0.1",
     "remix-i18next": "^5.2.0",
     "ua-parser-js": "^1.0.35",
-    "xml-formatter": "^3.4.1"
+    "xml-formatter": "^3.4.1",
+    "yup": "^1.2.0"
   },
   "devDependencies": {
     "@remix-run/dev": "^1.18.1",

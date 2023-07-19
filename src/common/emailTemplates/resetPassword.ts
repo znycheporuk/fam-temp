@@ -1,4 +1,4 @@
-import type { TLang } from '~/types';
+import type { TLang } from "~/types";
 
 
 interface IGetResetPasswordTemplateParams {
@@ -11,7 +11,7 @@ export const getResetPasswordTemplate = (lang: TLang, params: IGetResetPasswordT
 	return `
   <html lang='${lang}'>
   <body>
-  ${lang === 'en' ? `
+  ${lang === "en" ? `
     <h3>Hi ${params.firstName}!</h3>
     <p>To reset password follow the <a href='${process.env.ORIGIN}/${lang}/auth/reset-password?token=${params.token}&userId=${params.userId}'>link</a>, it will expire in 15 minutes.</p>
     <p>If you didn't request it, just ignore this email, and make sure no one has access to it.</p>

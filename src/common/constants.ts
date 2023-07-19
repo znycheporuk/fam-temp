@@ -48,4 +48,28 @@ export const polyfills: IPolyfill[] = [
 			{path: "/polyfills/popover.css", type: "stylesheet"},
 		],
 	},
+	{
+		browsers: {
+			"Safari": 15.4,
+			"Mobile Safari": 15.4,
+			"Chrome WebView": 37,
+			"Chrome": 37,
+			"Chromium": 37,
+			"Edge": 79,
+			"Android Browser": 37,
+			"Opera": 24,
+			"Opera Mini": 24,
+			"Opera Mobile": 24,
+			"Firefox": 98,
+			"Mobile Firefox": 98,
+			"Samsung Browser": 3.0,
+			"UCBrowser": 15.5,
+			"QQ Browser": 13.1,
+			"Baidu": 13.18,
+		},
+		assets: [
+			{path: "/polyfills/dialog.js", type: "script"},
+			{path: "/polyfills/dialog.css", type: "stylesheet"},
+		],
+	},
 ];

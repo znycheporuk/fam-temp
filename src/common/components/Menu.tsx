@@ -12,13 +12,13 @@ export const Menu = () => {
 	return (
 		<>
 			<div
-				aria-label='Menu'
-				id='menu'
-				className='menu__popup'
+				aria-label="Menu"
+				id="menu"
+				className="menu__popup"
 				// @ts-ignore
-				popover='auto'
+				popover="auto"
 			>
-				<div className='menu__popup-content'>
+				<div className="menu__popup-content">
 					<LanguageSwitcher />
 					{!xlg && <NavBar isPopup />}
 					<AuthButtons />
@@ -26,7 +26,7 @@ export const Menu = () => {
 				</div>
 			</div>
 			{/*@ts-ignore*/}
-			<button id='menu-button' popovertarget='menu' aria-label='Toggle menu button'>
+			<button id="menu-button" popovertarget="menu" aria-label="Toggle menu button">
 				<BurgerMenuIcon />
 			</button>
 		</>

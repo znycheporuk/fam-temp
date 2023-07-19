@@ -1,6 +1,6 @@
-import Notification from 'rc-notification';
-import type { NotificationInstance } from 'rc-notification/es/Notification';
-import { isBrowser } from '~/common/constants';
+import Notification from "rc-notification";
+import type { NotificationInstance } from "rc-notification/es/Notification";
+import { isBrowser } from "~/common/constants";
 
 
 let notificationInstance: NotificationInstance;
@@ -21,7 +21,7 @@ export const message = {
 		notificationInstance.notice({
 			...config,
 			content: (
-				<div role='alert'>
+				<div role="alert">
 					{text}
 				</div>
 			),

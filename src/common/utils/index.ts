@@ -8,3 +8,6 @@ export { sendEmail } from "~/services/sendEmail.server";
 export { getFormDataValues } from "~/common/utils/getFormDataValues.server";
 export { isAdmin, isSuperAdmin, isContentManager, isTeacher } from "~/common/utils/roles";
 export { badRequest, forbidden, notFound, unauthorized } from "~/common/utils/responses.server";
+export { getOppositeLanguage, parseLang, langLink } from "~/common/utils/language";
+export { getRedirectTo } from "~/common/utils/getRedirectTo";
+export { toKebabCase } from "~/common/utils/toKebabCase";
