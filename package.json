@@ -15,9 +15,9 @@
   },
   "dependencies": {
     "@prisma/client": "5.0.0",
-    "@remix-run/node": "^1.18.1",
-    "@remix-run/react": "^1.18.1",
-    "@remix-run/server-runtime": "^1.18.1",
+    "@remix-run/node": "^1.19.0",
+    "@remix-run/react": "^1.19.0",
+    "@remix-run/server-runtime": "^1.19.0",
     "cyrillic-to-translit-js": "^3.2.1",
     "i18next": "^23.2.6",
     "i18next-fs-backend": "^2.1.5",
@@ -34,7 +34,7 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
-    "@remix-run/dev": "^1.18.1",
+    "@remix-run/dev": "^1.19.0",
     "@types/nodemailer": "^6.4.8",
     "@types/react": "^18.0.35",
     "@types/react-dom": "^18.0.11",

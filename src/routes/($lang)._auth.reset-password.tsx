@@ -3,7 +3,7 @@ import { useActionData } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import { object, string } from "yup";
 import { Form, Input } from "~/common/components";
-import { badRequest, getFormDataValues, langLink } from "~/common/utils";
+import { badRequest, generateString, getFormDataValues, langLink } from "~/common/utils";
 import { db } from "~/services/db.server";
 import { i18n } from "~/services/i18n.server";
 
@@ -34,14 +34,16 @@ export const action: ActionFunction = async ({request, params}) => {
 	const user = await db.user.findUnique({where: {id: userId}, include: {resetToken: true}});
 	if (!user || !user.resetToken) return badRequest({message: t("invalidParams")});
 
-	const matches = await Bun.password.verify(user.resetToken.token, token);
+	const matches = await Bun.password.verify(user.resetToken.token, decodeURIComponent(token));
 	const expired = user.resetToken.expiresAt < Date.now();
 	if (!matches || expired) return badRequest({message: t("invalidParams")});
 
-	const hashedPassword = await Bun.password.hash(values.password + user.salt);
+	const salt = generateString(4);
+	const hashedPassword = await Bun.password.hash(values.password + salt);
+
 	await Promise.all([
-		db.user.update({where: {id: userId}, data: {password: hashedPassword}}),
-		db.resetToken.delete({where: {userId}}),
+		db.user.update({where: {id: userId}, data: {password: hashedPassword, salt}}),
+		db.resetToken.deleteMany({where: {userId}})
 	]);
 	return redirect(langLink(params.lang, "sign-in"));
 };

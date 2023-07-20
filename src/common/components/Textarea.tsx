@@ -1,5 +1,6 @@
 import type { HTMLProps } from "react";
 import { useFormContext } from "~/common/hooks";
+import { toKebabCase } from "~/common/utils";
 
 
 interface IProps extends HTMLProps<HTMLTextAreaElement> {
@@ -17,16 +18,19 @@ export const Textarea = ({label, name, labelStyle, ...props}: IProps) => {
 		props.onChange?.(e);
 		setValue?.(name, e.target.value);
 	};
-
+	
+	const id = toKebabCase(name);
 	return (
 		<label className="grid" style={labelStyle}>
 			{label}
 			<textarea
-				name={name} {...props}
+				{...props}
+				name={name}
 				onChange={onChange}
 				onBlur={() => !touched && setTouched(name)}
 				defaultValue={defaultValue as string | undefined}
 				aria-invalid={!!error}
+				aria-describedby={error ? `${id}-error` : undefined}
 			/>
 			{error && (touched || forceDisplay) && <em className="validation-error">{error}</em>}
 		</label>

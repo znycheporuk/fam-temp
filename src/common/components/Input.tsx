@@ -25,6 +25,7 @@ export const Input = ({label, name, labelStyle, ...props}: IProps) => {
 		<label className="grid" style={labelStyle}>
 			{label}
 			<input
+				{...props}
 				id={id}
 				name={name}
 				defaultValue={defaultValue as string | undefined}

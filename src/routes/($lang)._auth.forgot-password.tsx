@@ -4,10 +4,9 @@ import { useTranslation } from "react-i18next";
 import { object, string } from "yup";
 import { Form, Input } from "~/common/components";
 import { getResetPasswordTemplate } from "~/common/emailTemplates/resetPassword";
-import { badRequest, generateString, getFormDataValues, notFound, sendEmail } from "~/common/utils";
+import { badRequest, generateString, getFormDataValues, notFound, parseLang, sendEmail } from "~/common/utils";
 import { db } from "~/services/db.server";
 import { i18n } from "~/services/i18n.server";
-import type { TLang } from "~/types";
 
 
 export const meta: V2_MetaFunction = () => {
@@ -55,16 +54,16 @@ export const action: ActionFunction = async ({request, params}) => {
 		sendEmail({
 			to: values.email,
 			subject: t("resetPassword"),
-			html: getResetPasswordTemplate(params.lang as TLang, {
+			html: getResetPasswordTemplate(parseLang(params.lang), {
 				firstName: user.firstName,
 				userId: user.id,
-				token: hashedToken,
+				token: encodeURIComponent(hashedToken),
 			}),
 		}),
 
 		db.resetToken.deleteMany({where: {expiresAt: {lt: Date.now()}}}),
 	]);
-
+	// console.log(`/reset-password?token=${encodeURIComponent(hashedToken)}&userId=${user.id}`);
 	return json({message: t("letterOfConfirmationSent")});
 };
 
