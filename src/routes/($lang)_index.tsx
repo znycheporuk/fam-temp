@@ -1,11 +1,12 @@
 import type { LoaderArgs, V2_MetaFunction } from "@remix-run/node";
 import { Link, useLoaderData, useParams } from "@remix-run/react";
+import { desc, eq } from "drizzle-orm";
 import { useTranslation } from "react-i18next";
 import { ArticleCard, ThemedIcon } from "~/common/components";
 import { ProcessorIcon } from "~/common/components/Icons";
 import { breakpoints } from "~/common/constants";
 import { parseLang } from "~/common/utils/language";
-import { db } from "~/services/db.server";
+import { db } from "~/drizzle/db.server";
 import style from "~/styles/routes/index.css";
 
 
@@ -31,11 +32,12 @@ export const handle = {
 
 export const loader = async ({params}: LoaderArgs) => {
 	const lang = parseLang(params.lang);
-	const news = await db.news.findMany({
-		where: {lang},
-		select: {id: true, title: true, source: true, createdAt: true},
-		orderBy: {createdAt: "desc"},
-		take: 3,
+	
+	const news = db.query.news.findMany({
+		where: (n) => eq(n.lang, lang),
+		columns: {id: true, title: true, source: true, createdAt: true},
+		orderBy: (n) => desc(n.createdAt),
+		limit: 3,
 	});
 
 	return {

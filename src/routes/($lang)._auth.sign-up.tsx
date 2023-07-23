@@ -1,12 +1,12 @@
-import type { Prisma } from "@prisma/client";
 import { ActionFunction, json, redirect, V2_MetaFunction } from "@remix-run/node";
 import { Link, useActionData, useParams } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import { boolean, mixed, object, string } from "yup";
 import { Form, Input, Select } from "~/common/components";
-import { badRequest, generateString, langLink } from "~/common/utils";
+import { badRequest, generateSalt, langLink } from "~/common/utils";
 import { getFormDataValues } from "~/common/utils/getFormDataValues.server";
-import { db } from "~/services/db.server";
+import { db } from "~/drizzle/db.server";
+import { admins, contentManagers, students, teachers, users } from "~/drizzle/schema.server";
 import { commitSession, getUserSession } from "~/services/session.server";
 import type { IFormContext } from "~/types";
 
@@ -36,36 +36,35 @@ export const action: ActionFunction = async ({request, params}) => {
 	const [errors, data] = await getFormDataValues(validationSchema, request);
 	if (errors) return badRequest({errors});
 	const {role, group, superAdmin, ...values} = data;
-
 	const session = await getUserSession(request);
 
-	const user = await db.user.findFirst({where: {email: values.email}});
+	const user = await db.query.users.findFirst({where: (user, {eq}) => eq(user.email, values.email)});
 	if (user) return json({errors: {email: "User with such email already exists"}}, {status: 409});
 
-	const salt = generateString(4);
+	const salt = generateSalt();
 	values.password = await Bun.password.hash(values.password + salt);
 
-	let roleSpecificData;
+	const [res] = await db.insert(users).values({...values, salt}).returning({userId: users.id}).all();
+	const userId = res?.userId as number;
+	session.set("userId", userId);
 	switch (role) {
 		case "admin":
-			roleSpecificData = {admin: {create: {superAdmin}}};
+			await db.insert(admins).values({userId}).run();
+			session.set("isAdmin", true);
+			session.set("isContentManager", true);
 			break;
 		case "contentManager":
-			roleSpecificData = {contentManager: {create: {}}};
-			break;
-		case "teacher":
-			roleSpecificData = {teacher: {create: {}}};
+			await db.insert(contentManagers).values({userId}).run();
+			session.set("isContentManager", true);
 			break;
 		case "student":
-			roleSpecificData = {student: {create: {group}}};
+			await db.insert(students).values({userId, group: group as string}).run();
 			break;
-		default:
-			return badRequest("invalid user type");
+		case "teacher":
+			await db.insert(teachers).values({userId}).run();
+			session.set("isTeacher", true);
+			break;
 	}
-	await db.user.create({
-		data: {...values as Prisma.UserCreateInput, salt, ...roleSpecificData as any},
-		include: {admin: true, contentManager: true},
-	});
 	return redirect(langLink(params.lang), {headers: {"Set-Cookie": await commitSession(session)}});
 };
 

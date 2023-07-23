@@ -1,11 +1,13 @@
 import { ActionFunction, json, V2_MetaFunction } from "@remix-run/node";
 import { useActionData, useLocation } from "@remix-run/react";
+import { lt } from "drizzle-orm";
 import { useTranslation } from "react-i18next";
 import { object, string } from "yup";
 import { Form, Input } from "~/common/components";
 import { getResetPasswordTemplate } from "~/common/emailTemplates/resetPassword";
 import { badRequest, generateString, getFormDataValues, notFound, parseLang, sendEmail } from "~/common/utils";
-import { db } from "~/services/db.server";
+import { db } from "~/drizzle/db.server";
+import { resetTokens } from "~/drizzle/schema.server";
 import { i18n } from "~/services/i18n.server";
 
 
@@ -30,26 +32,23 @@ export const action: ActionFunction = async ({request, params}) => {
 
 	const [t, user, hashedToken] = await Promise.all([
 		i18n.getFixedT(params.lang!, "server"),
-		db.user.findUnique({where: {email: values.email}}),
+		db.query.users.findFirst({
+			where: (user, {eq}) => eq(user.email, values.email),
+			columns: {
+				id: true,
+				firstName: true,
+			},
+		}),
 		Bun.password.hash(token),
 	]);
 
 	if (!user) return notFound({message: t("userNotFound")});
-
+	
+	const expiresAt = Date.now() + 15 * 60 * 1000;
 	await Promise.all([
-		db.resetToken.upsert({
-			where: {userId: user.id},
-			create: {
-				userId: user.id,
-				token,
-				expiresAt: Date.now() + 15 * 60 * 1000,
-			},
-			update: {
-				userId: user.id,
-				token,
-				expiresAt: Date.now() + 15 * 60 * 1000,
-			},
-		}),
+		db.insert(resetTokens)
+			.values({token, userId: user.id, expiresAt})
+			.onConflictDoUpdate({target: resetTokens.userId, set: {token, expiresAt}}).run(),
 
 		sendEmail({
 			to: values.email,
@@ -61,7 +60,7 @@ export const action: ActionFunction = async ({request, params}) => {
 			}),
 		}),
 
-		db.resetToken.deleteMany({where: {expiresAt: {lt: Date.now()}}}),
+		db.delete(resetTokens).where(lt(resetTokens.expiresAt, Date.now())).run(),
 	]);
 	// console.log(`/reset-password?token=${encodeURIComponent(hashedToken)}&userId=${user.id}`);
 	return json({message: t("letterOfConfirmationSent")});

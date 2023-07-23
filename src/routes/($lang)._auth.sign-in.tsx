@@ -6,7 +6,7 @@ import { Form, Input } from "~/common/components";
 import { badRequest, forbidden, isAdmin, isContentManager, langLink, notFound } from "~/common/utils";
 import { getFormDataValues } from "~/common/utils/getFormDataValues.server";
 import { isSuperAdmin } from "~/common/utils/roles";
-import { db } from "~/services/db.server";
+import { db } from "~/drizzle/db.server";
 import { i18n } from "~/services/i18n.server";
 import { commitSession, getUserSession } from "~/services/session.server";
 import type { IFormContext } from "~/types";
@@ -31,9 +31,20 @@ export const action: ActionFunction = async ({request, params}) => {
 	const [session, user, t] = await Promise.all([
 		getUserSession(request),
 
-		db.user.findUnique({
-			where: {email: values.email},
-			include: {admin: true, teacher: true, student: true, contentManager: true},
+		db.query.users.findFirst({
+			columns: {
+				id: true,
+				email: true,
+				password: true,
+				salt: true,
+				active: true,
+			},
+			with: {
+				admin: true,
+				teacher: true,
+				student: true,
+				contentManager: true,
+			},
 		}),
 
 		i18n.getFixedT(params.lang!, "server"),

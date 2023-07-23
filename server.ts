@@ -33,8 +33,12 @@ Bun.serve({
 		const handler = createRequestHandler(build, process.env.NODE_ENV);
 
 		const loadContext = {};
-
-		return handler(request, loadContext);
+		try {
+			return handler(request, loadContext);
+		} catch (e) {
+			console.log("handler crushed with:", e);
+			return new Response(null, {status: 500});
+		}
 	},
 	error() {
 		return new Response(null, {status: 404});

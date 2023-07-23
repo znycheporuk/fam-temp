@@ -13,7 +13,9 @@ import { useTranslation } from "react-i18next";
 import { Footer, Header, Polyfills } from "~/common/components";
 import { mediaQueries } from "~/common/constants";
 import { parseLang } from "~/common/utils";
+import { db } from "~/drizzle/db.server";
 import { getPolyfills } from "~/services/polyfills.server";
+import { getUserSession } from "~/services/session.server";
 import globalStylesUrl from "~/styles/global/global.css";
 import globalLargeStylesUrl from "~/styles/global/global.lg.css";
 import globalMidStylesUrl from "~/styles/global/global.md.css";
@@ -48,9 +50,16 @@ export const handle = {
 
 
 export const loader = async ({request}: LoaderArgs) => {
+	const session = await getUserSession(request);
 	const polyfills = getPolyfills(request);
 
-	return {user: null as any, polyfills, theme: "" as TTheme};
+	const userId = session.get("userId");
+	const user = userId ? await db.query.users.findFirst({
+		where: (user, {eq}) => eq(user.id, userId),
+		columns: {password: false, salt: false},
+	}) : null;
+
+	return {user, polyfills, theme: "" as TTheme};
 };
 
 export type IRootLoaderData = SerializeFrom<typeof loader>;

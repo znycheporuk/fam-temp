@@ -9,3 +9,5 @@ export const generateString = (length: number) => {
 
 	return result;
 };
+
+export const generateSalt = () => generateString(6);

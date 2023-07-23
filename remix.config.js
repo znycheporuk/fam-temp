@@ -1,3 +1,15 @@
+import { withEsbuildOverride } from "remix-esbuild-override";
+
+withEsbuildOverride((config) => {
+	config.external ??= [];
+	if (!config.external.includes("bun:sqlite") && config.bundle) {
+		config.external.push("bun:sqlite");
+		// to allow top-level await
+		config.target = "node18";
+	}
+	return config;
+});
+
 /** @type {import('@remix-run/dev').AppConfig} */
 export default {
 	appDirectory: "src",

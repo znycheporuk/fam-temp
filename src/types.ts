@@ -1,4 +1,5 @@
-import type { Admin, ContentManager, Student, Teacher, User } from "@prisma/client";
+import { InferModel } from "drizzle-orm";
+import type { admins, contentManagers, students, teachers, users } from "~/drizzle/schema.server";
 
 
 export type InferActionsTypes<T> = T extends {[key: string]: (...args: Array<any>) => infer U} ? U : never
@@ -47,11 +48,13 @@ export interface IPolyfill {
 	assets: IPolyfillAsset[];
 }
 
-export type TUser = Partial<Omit<User, "createdAt" | "updatedAt">> & {
-	createdAt?: string | Date,
-	updatedAt?: string | Date,
-	student?: Student | null,
-	teacher?: Teacher | null,
-	admin?: Admin | null,
-	contentManager?: ContentManager | null
+export type TAdmin = InferModel<typeof admins>
+export type TContentManager = InferModel<typeof contentManagers>
+export type TStudent = InferModel<typeof students>
+export type TTeacher = InferModel<typeof teachers>
+export type TUser = InferModel<typeof users> & {
+	student?: TStudent | null;
+	teacher?: TTeacher | null;
+	admin?: TAdmin | null;
+	contentManager?: TContentManager | null;
 }

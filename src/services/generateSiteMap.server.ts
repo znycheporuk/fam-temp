@@ -1,7 +1,5 @@
-import type { Article } from "@prisma/client";
 import format from "xml-formatter";
 import { getOppositeLanguage } from "~/common/utils/language";
-import { db } from "~/services/db.server";
 import type { TLang } from "~/types";
 
 

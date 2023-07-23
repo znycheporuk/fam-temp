@@ -1,5 +1,5 @@
 export { cx } from "~/common/utils/classNames";
-export { generateString } from "~/common/utils/generateString";
+export { generateString, generateSalt } from "~/common/utils/generateString";
 export { getTotalSize } from "~/common/utils/getSizeOfFiles.server";
 export { getValidationErrors } from "~/common/utils/getValidationErrors";
 export { message } from "~/common/utils/message";
