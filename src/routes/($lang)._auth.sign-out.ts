@@ -1,5 +1,5 @@
-import { ActionFunction, json, redirect } from "@remix-run/node";
-import { langLink } from "~/common/utils";
+import { ActionFunction, redirect } from "@remix-run/node";
+import { getRedirectTo, langLink } from "~/common/utils";
 import { destroySession, getUserSession } from "~/services/session.server";
 
 
@@ -13,5 +13,5 @@ export const action: ActionFunction = async ({request, params}) => {
 	if (request.url.includes("users") || request.url.includes("archive") || request.url.includes("edit")) {
 		return redirect(langLink(params.lang), {headers});
 	}
-	return json(null, {headers});
+	return redirect(getRedirectTo(request), {headers});
 };

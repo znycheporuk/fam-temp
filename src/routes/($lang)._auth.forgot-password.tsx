@@ -1,13 +1,13 @@
 import { ActionFunction, json, V2_MetaFunction } from "@remix-run/node";
-import { useActionData, useLocation } from "@remix-run/react";
-import { lt } from "drizzle-orm";
+import { useLocation } from "@remix-run/react";
+import { eq, lt } from "drizzle-orm";
 import { useTranslation } from "react-i18next";
 import { object, string } from "yup";
 import { Form, Input } from "~/common/components";
 import { getResetPasswordTemplate } from "~/common/emailTemplates/resetPassword";
 import { badRequest, generateString, getFormDataValues, notFound, parseLang, sendEmail } from "~/common/utils";
 import { db } from "~/drizzle/db.server";
-import { resetTokens } from "~/drizzle/schema.server";
+import { resetTokens, users } from "~/drizzle/schema.server";
 import { i18n } from "~/services/i18n.server";
 
 
@@ -24,26 +24,21 @@ const validationSchema = object({
 });
 
 export const action: ActionFunction = async ({request, params}) => {
-	const [error, values] = await getFormDataValues(validationSchema, request);
-	if (error) return badRequest({error});
+	const [errors, values] = await getFormDataValues(validationSchema, request);
+	if (errors) return badRequest({errors});
 
 
 	let token = generateString(32);
 
-	const [t, user, hashedToken] = await Promise.all([
+	const [t, [user], hashedToken] = await Promise.all([
 		i18n.getFixedT(params.lang!, "server"),
-		db.query.users.findFirst({
-			where: (user, {eq}) => eq(user.email, values.email),
-			columns: {
-				id: true,
-				firstName: true,
-			},
-		}),
+		// TODO: change to .get() when drizzle-orm bug is fixed
+		db.select({id: users.id, firstName: users.firstName}).from(users).where(eq(users.email, values?.email)).all(),
 		Bun.password.hash(token),
 	]);
 
 	if (!user) return notFound({message: t("userNotFound")});
-	
+
 	const expiresAt = Date.now() + 15 * 60 * 1000;
 	await Promise.all([
 		db.insert(resetTokens)
@@ -69,14 +64,13 @@ export const action: ActionFunction = async ({request, params}) => {
 
 export default () => {
 	const {t} = useTranslation("authentication");
-	const actionData = useActionData();
 	const {search} = useLocation();
 	const email = new URLSearchParams(search).get("email");
 
 	return (
 		<div className="sign-page sign-in">
 			<h1>{t("forgotPasswordTitle")}</h1>
-			<Form validationSchema={validationSchema} errors={actionData?.errors} initialValues={{email}}>
+			<Form validationSchema={validationSchema} initialValues={{email}}>
 				<Input name="email" type="email" label={t("email")} />
 				<button type="submit" className="button--primary">
 					{t("forgotPasswordBtn")}

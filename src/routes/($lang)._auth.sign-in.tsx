@@ -1,9 +1,10 @@
 import { ActionFunction, redirect, V2_MetaFunction } from "@remix-run/node";
-import { Link, useActionData, useParams } from "@remix-run/react";
+import { Link, useParams } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import { object, string } from "yup";
 import { Form, Input } from "~/common/components";
-import { badRequest, forbidden, isAdmin, isContentManager, langLink, notFound } from "~/common/utils";
+import { useMessage } from "~/common/hooks/useMessage";
+import { badRequest, forbidden, isAdmin, isContentManager, langLink, notFound, parseLang } from "~/common/utils";
 import { getFormDataValues } from "~/common/utils/getFormDataValues.server";
 import { isSuperAdmin } from "~/common/utils/roles";
 import { db } from "~/drizzle/db.server";
@@ -26,12 +27,13 @@ const validationSchema = object({
 });
 
 export const action: ActionFunction = async ({request, params}) => {
-	const [error, values] = await getFormDataValues(validationSchema, request);
-	if (error) return badRequest({error});
-	const [session, user, t] = await Promise.all([
+	const [errors, values] = await getFormDataValues(validationSchema, request);
+	if (errors) return badRequest({errors});
+	const [session, [user], t] = await Promise.all([
 		getUserSession(request),
-
-		db.query.users.findFirst({
+		// TODO: change to .findFirst() when drizzle-orm bug is fixed
+		db.query.users.findMany({
+			where: (u, {eq}) => eq(u.email, values.email),
 			columns: {
 				id: true,
 				email: true,
@@ -47,14 +49,15 @@ export const action: ActionFunction = async ({request, params}) => {
 			},
 		}),
 
-		i18n.getFixedT(params.lang!, "server"),
+		i18n.getFixedT(parseLang(params.lang), "server"),
 	]);
 
-	if (!user) return notFound({message: t("invalidEmailOrPass")});
-
-	const matches = await Bun.password.verify(values.password + user.salt, user.password);
-
-	if (!matches) return notFound({message: t("invalidEmailOrPass")});
+	if (!user || !await Bun.password.verify(values.password + user.salt, user.password)) return notFound({
+		errors: {
+			email: t("invalidEmailOrPass"),
+			password: t("invalidEmailOrPass"),
+		},
+	});
 	if (!user.active) return forbidden({message: t("inactiveAccount")});
 
 	session.set("userId", user.id);
@@ -68,13 +71,13 @@ export const action: ActionFunction = async ({request, params}) => {
 
 export default () => {
 	const {t} = useTranslation(["authentication", "common"]);
-	const actionData = useActionData();
 	const {lang} = useParams();
+	useMessage();
 
 	return (
 		<div className="sign-page sign-in">
 			<h1>{t("signInTitle")}</h1>
-			<Form validationSchema={validationSchema} errors={actionData?.errors}>
+			<Form validationSchema={validationSchema}>
 				{({values}: IFormContext) =>
 					<>
 						<Input name="email" type="email" label={t("email")} />

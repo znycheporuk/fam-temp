@@ -1,5 +1,4 @@
 import { ActionFunction, redirect, V2_MetaFunction } from "@remix-run/node";
-import { useActionData } from "@remix-run/react";
 import { eq } from "drizzle-orm";
 import { useTranslation } from "react-i18next";
 import { object, string } from "yup";
@@ -23,8 +22,8 @@ const validationSchema = object({
 });
 
 export const action: ActionFunction = async ({request, params}) => {
-	const [error, values] = await getFormDataValues(validationSchema, request);
-	if (error) return badRequest({error});
+	const [errors, values] = await getFormDataValues(validationSchema, request);
+	if (errors) return badRequest({errors});
 
 	const searchParams = new URL(request.url).searchParams;
 	const token = searchParams.get("token");
@@ -56,12 +55,11 @@ export const action: ActionFunction = async ({request, params}) => {
 
 export default () => {
 	const {t} = useTranslation("authentication");
-	const actionData = useActionData();
 
 	return (
 		<div className="sign-page sign-up">
 			<h1>{t("resetPasswordTitle")}</h1>
-			<Form validationSchema={validationSchema} errors={actionData?.errors}>
+			<Form validationSchema={validationSchema}>
 				<Input name="password" type="password" label={t("newPassword")} />
 				<button type="submit" className="button--primary">{t("resetPasswordBtn")}</button>
 			</Form>

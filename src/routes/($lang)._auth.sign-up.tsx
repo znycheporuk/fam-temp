@@ -1,5 +1,5 @@
 import { ActionFunction, json, redirect, V2_MetaFunction } from "@remix-run/node";
-import { Link, useActionData, useParams } from "@remix-run/react";
+import { Link, useParams } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import { boolean, mixed, object, string } from "yup";
 import { Form, Input, Select } from "~/common/components";
@@ -71,13 +71,12 @@ export const action: ActionFunction = async ({request, params}) => {
 
 export default () => {
 	const {t} = useTranslation(["authentication", "common"]);
-	const actionData = useActionData();
 	const {lang} = useParams();
 
 	return (
 		<div className="sign-page sign-up">
 			<h1>{t("signUpTitle")}</h1>
-			<Form validationSchema={validationSchema} errors={actionData?.errors}>
+			<Form validationSchema={validationSchema}>
 				{({values}: IFormContext) =>
 					<>
 						<Input name="firstName" label={t("firstName")} />
