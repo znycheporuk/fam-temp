@@ -4,7 +4,7 @@ import type { admins, contentManagers, students, teachers, users } from "~/drizz
 
 export type InferActionsTypes<T> = T extends {[key: string]: (...args: Array<any>) => infer U} ? U : never
 
-export type TTheme = "light" | "dark" | ""
+export type TTheme = "light" | "dark" | undefined
 export type TLang = "en" | "uk"
 
 

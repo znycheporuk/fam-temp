@@ -9,39 +9,39 @@ h1 {
 	padding-bottom: 2rem;
 }
 
-@media (prefers-color-scheme: dark) {
-	.sign-in {
-		background: url('/icons/person/background-sign-in-dark.svg') no-repeat bottom;
-	}
+/*@media (prefers-color-scheme: dark) {*/
+/*	.sign-in {*/
+/*		background: url('/icons/person/background-sign-in-dark.svg') no-repeat bottom;*/
+/*	}*/
 
-	.sign-up {
-		background: url('/icons/person/background-sign-up-dark.svg') no-repeat bottom;
-	}
+/*	.sign-up {*/
+/*		background: url('/icons/person/background-sign-up-dark.svg') no-repeat bottom;*/
+/*	}*/
 
-}
+/*}*/
 
-@media (prefers-color-scheme: light) {
-	.sign-in {
-		background: url('/icons/person/background-sign-in.svg') no-repeat bottom;
-	}
+/*@media (prefers-color-scheme: light) {*/
+/*	.sign-in {*/
+/*		background: url('/icons/person/background-sign-in.svg') no-repeat bottom;*/
+/*	}*/
 
-	.sign-in {
-		background: url('/icons/person/background-sign-up.svg') no-repeat bottom;
-	}
-}
+/*	.sign-in {*/
+/*		background: url('/icons/person/background-sign-up.svg') no-repeat bottom;*/
+/*	}*/
+/*}*/
 
-.light .sign-in {
-	background: url('/icons/person/background-sign-in.svg') no-repeat bottom;
-}
+/*.light .sign-in {*/
+/*	background: url('/icons/person/background-sign-in.svg') no-repeat bottom;*/
+/*}*/
 
-.dark .sign-in {
-	background: url('/icons/person/background-sign-in-dark.svg') no-repeat bottom;
-}
+/*.dark .sign-in {*/
+/*	background: url('/icons/person/background-sign-in-dark.svg') no-repeat bottom;*/
+/*}*/
 
-.light .sign-up {
-	background: url('/icons/person/background-sign-up.svg') no-repeat bottom;
-}
+/*.light .sign-up {*/
+/*	background: url('/icons/person/background-sign-up.svg') no-repeat bottom;*/
+/*}*/
 
-.dark .sign-up {
-	background: url('/icons/person/background-sign-up-dark.svg') no-repeat bottom;
-}
+/*.dark .sign-up {*/
+/*	background: url('/icons/person/background-sign-up-dark.svg') no-repeat bottom;*/
+/*}*/

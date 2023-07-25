@@ -11,3 +11,4 @@ export { badRequest, forbidden, notFound, unauthorized } from "~/common/utils/re
 export { getOppositeLanguage, parseLang, langLink } from "~/common/utils/language";
 export { getRedirectTo } from "~/common/utils/getRedirectTo";
 export { toKebabCase } from "~/common/utils/toKebabCase";
+export { getOppositeTheme, getTheme } from "~/common/utils/theme";

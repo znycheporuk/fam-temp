@@ -12,7 +12,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { Footer, Header, Polyfills } from "~/common/components";
 import { mediaQueries } from "~/common/constants";
-import { parseLang } from "~/common/utils";
+import { cx, getTheme, parseLang } from "~/common/utils";
 import { db } from "~/drizzle/db.server";
 import { getPolyfills } from "~/services/polyfills.server";
 import { getUserSession } from "~/services/session.server";
@@ -22,7 +22,6 @@ import globalMidStylesUrl from "~/styles/global/global.md.css";
 import globalSmallStylesUrl from "~/styles/global/global.sm.css";
 import globalXLargeStylesUrl from "~/styles/global/global.xlg.css";
 import noMotionStylesUrl from "~/styles/global/nomotion.css";
-import type { TTheme } from "~/types";
 
 
 export const links: LinksFunction = () => {
@@ -58,18 +57,18 @@ export const loader = async ({request}: LoaderArgs) => {
 		where: (user, {eq}) => eq(user.id, userId),
 		columns: {password: false, salt: false},
 	}) : undefined;
-
-	return {user, polyfills, theme: "" as TTheme};
+	const theme = getTheme(request);
+	return {user, polyfills, theme};
 };
 
 export type IRootLoaderData = SerializeFrom<typeof loader>;
 
 export default () => {
-	const {polyfills} = useLoaderData<typeof loader>();
+	const {polyfills, theme} = useLoaderData<typeof loader>();
 	const {lang} = useParams();
 
 	return (
-		<html lang={parseLang(lang)}>
+		<html lang={parseLang(lang)} className={cx(theme)}>
 			<head>
 				<meta charSet="utf-8" />
 				<meta name="viewport" content="width=device-width,initial-scale=1" />
