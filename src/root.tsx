@@ -57,7 +57,7 @@ export const loader = async ({request}: LoaderArgs) => {
 	const user = userId ? await db.query.users.findFirst({
 		where: (user, {eq}) => eq(user.id, userId),
 		columns: {password: false, salt: false},
-	}) : null;
+	}) : undefined;
 
 	return {user, polyfills, theme: "" as TTheme};
 };
