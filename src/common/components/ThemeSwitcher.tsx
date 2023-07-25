@@ -1,18 +1,18 @@
-import { Form, useLocation } from "@remix-run/react";
+import { useFetcher, useLocation } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import { isBrowser } from "~/common/constants";
-import { useRootLoaderData } from "~/common/hooks";
+import { useOptimisticTheme } from "~/common/hooks";
 
 
 export const ThemeSwitcher = () => {
 	const {pathname} = useLocation();
 	const {t} = useTranslation();
-	const {theme} = useRootLoaderData();
-
+	const theme = useOptimisticTheme();
+	const fetcher = useFetcher();
 	const actualTheme = theme || ((isBrowser && window.matchMedia("(prefers-color-scheme: light)").matches) ? "light" : "dark");
 
 	return (
-		<Form method="POST" action={`/actions/theme?redirectTo=${pathname}`}>
+		<fetcher.Form method="POST" action={`/actions/theme?redirectTo=${pathname}`}>
 			<button
 				className="theme-switcher"
 				aria-live="polite"
@@ -44,6 +44,6 @@ export const ThemeSwitcher = () => {
 				</svg>
 				<span>{t(`menu.switchTo.${actualTheme}`)}</span>
 			</button>
-		</Form>
+		</fetcher.Form>
 	);
 };

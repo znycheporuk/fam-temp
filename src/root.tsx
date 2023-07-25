@@ -12,6 +12,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { Footer, Header, Polyfills } from "~/common/components";
 import { mediaQueries } from "~/common/constants";
+import { useOptimisticTheme } from "~/common/hooks";
 import { cx, getTheme, parseLang } from "~/common/utils";
 import { db } from "~/drizzle/db.server";
 import { getPolyfills } from "~/services/polyfills.server";
@@ -53,10 +54,10 @@ export const loader = async ({request}: LoaderArgs) => {
 	const polyfills = getPolyfills(request);
 
 	const userId = session.get("userId");
-	const user = userId ? await db.query.users.findFirst({
+	const user = userId ? (await db.query.users.findMany({
 		where: (user, {eq}) => eq(user.id, userId),
 		columns: {password: false, salt: false},
-	}) : undefined;
+	}))[0] : undefined;
 	const theme = getTheme(request);
 	return {user, polyfills, theme};
 };
@@ -64,8 +65,9 @@ export const loader = async ({request}: LoaderArgs) => {
 export type IRootLoaderData = SerializeFrom<typeof loader>;
 
 export default () => {
-	const {polyfills, theme} = useLoaderData<typeof loader>();
+	const {polyfills} = useLoaderData<typeof loader>();
 	const {lang} = useParams();
+	const theme = useOptimisticTheme();
 
 	return (
 		<html lang={parseLang(lang)} className={cx(theme)}>

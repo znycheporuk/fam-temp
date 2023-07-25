@@ -1,5 +1,5 @@
 import type { HTMLAttributes } from "react";
-import { useRootLoaderData } from "~/common/hooks";
+import { useOptimisticTheme } from "~/common/hooks";
 import { cx } from "~/common/utils";
 
 
@@ -10,7 +10,7 @@ interface IThemedIcon extends HTMLAttributes<HTMLImageElement> {
 }
 
 export const ThemedIcon = ({mobileWidth = 0, className, path, ...props}: IThemedIcon) => {
-	const {theme} = useRootLoaderData();
+	const theme = useOptimisticTheme();
 
 	const lightSrc = `/icons/${path}.svg`;
 	const darkSrc = `/icons/${path}-dark.svg`;

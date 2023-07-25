@@ -17,10 +17,6 @@ body {
 	background-color: var(--background-color);
 }
 
-body * {
-	transition: var(--transition);
-}
-
 main {
 	position: relative;
 	margin-top: var(--header-height);

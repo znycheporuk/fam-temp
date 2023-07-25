@@ -7,7 +7,8 @@
 	padding: 1.5rem;
 	border-radius: var(--border-radius);
 	background-color: var(--secondary-background-color);
-	box-shadow: var(--box-shadow)
+	box-shadow: var(--box-shadow);
+	transition: var(--transition);
 }
 
 .card:hover, .card:focus-within {

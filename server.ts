@@ -31,7 +31,9 @@ Bun.serve({
 
 		build = await import(BUILD_PATH);
 		const handler = createRequestHandler(build, process.env.NODE_ENV);
-
+		if (process.env.NODE_ENV === "development" && url.pathname !== "/favicon.ico") {
+			console.log(request.method, url.pathname + url.search);
+		}
 		const loadContext = {};
 		try {
 			return handler(request, loadContext);
