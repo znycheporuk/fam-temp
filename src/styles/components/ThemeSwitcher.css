@@ -1,10 +1,10 @@
 .theme-switcher {
 	position: relative;
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	padding: 0.1rem;
 	border: 0.1rem solid var(--text-color);
 	border-radius: 1.5rem;
-	padding: 0.1rem;
+	grid-template-columns: repeat(3, 1fr);
 	gap: 0.2rem;
 
 	& button {
@@ -13,12 +13,12 @@
 		color: var(--text-color);
 		border: none;
 		border-radius: 1.5rem;
-		background-color: transparent;
 		outline-offset: -0.1rem;
+		background-color: transparent;
 
 		&[aria-pressed=true] {
-			outline-offset: 0.1rem;
 			color: var(--background-color);
+			outline-offset: 0.1rem;
 		}
 
 		&[aria-pressed=false]:hover {

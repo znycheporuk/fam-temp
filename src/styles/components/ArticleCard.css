@@ -5,10 +5,10 @@
 	height: 100%;
 	margin: 0;
 	padding: 1.5rem;
+	transition: var(--transition);
 	border-radius: var(--border-radius);
 	background-color: var(--secondary-background-color);
 	box-shadow: var(--box-shadow);
-	transition: var(--transition);
 }
 
 .card:hover, .card:focus-within {

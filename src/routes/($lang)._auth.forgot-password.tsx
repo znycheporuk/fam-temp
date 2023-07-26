@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { object, string } from "yup";
 import { Form, Input } from "~/common/components";
 import { getResetPasswordTemplate } from "~/common/emailTemplates/resetPassword";
+import { useMessage } from "~/common/hooks/useMessage";
 import { badRequest, generateString, getFormDataValues, notFound, parseLang, sendEmail } from "~/common/utils";
 import { db } from "~/drizzle/db.server";
 import { resetTokens, users } from "~/drizzle/schema.server";
@@ -30,33 +31,36 @@ export const action: ActionFunction = async ({request, params}) => {
 
 	let token = generateString(32);
 
-	const [t, [user], hashedToken] = await Promise.all([
+	const [t, hashedToken] = await Promise.all([
 		i18n.getFixedT(params.lang!, "server"),
-		// TODO: change to .get() when drizzle-orm bug is fixed
-		db.select({id: users.id, firstName: users.firstName}).from(users).where(eq(users.email, values?.email)).all(),
 		Bun.password.hash(token),
 	]);
+
+	// TODO: change to .get() when drizzle-orm bug is fixed
+	const user = db
+		.select({id: users.id, firstName: users.firstName})
+		.from(users)
+		.where(eq(users.email, values?.email)).all()[0];
 
 	if (!user) return notFound({message: t("userNotFound")});
 
 	const expiresAt = Date.now() + 15 * 60 * 1000;
-	await Promise.all([
-		db.insert(resetTokens)
-			.values({token, userId: user.id, expiresAt})
-			.onConflictDoUpdate({target: resetTokens.userId, set: {token, expiresAt}}).run(),
 
-		sendEmail({
-			to: values.email,
-			subject: t("resetPassword"),
-			html: getResetPasswordTemplate(parseLang(params.lang), {
-				firstName: user.firstName,
-				userId: user.id,
-				token: encodeURIComponent(hashedToken),
-			}),
+	db.insert(resetTokens)
+		.values({token, userId: user.id, expiresAt})
+		.onConflictDoUpdate({target: resetTokens.userId, set: {token, expiresAt}}).run();
+	db.delete(resetTokens).where(lt(resetTokens.expiresAt, Date.now())).run();
+
+	await sendEmail({
+		to: values.email,
+		subject: t("resetPassword"),
+		html: getResetPasswordTemplate(parseLang(params.lang), {
+			firstName: user.firstName,
+			userId: user.id,
+			token: encodeURIComponent(hashedToken),
 		}),
+	});
 
-		db.delete(resetTokens).where(lt(resetTokens.expiresAt, Date.now())).run(),
-	]);
 	// console.log(`/reset-password?token=${encodeURIComponent(hashedToken)}&userId=${user.id}`);
 	return json({message: t("letterOfConfirmationSent")});
 };
@@ -66,6 +70,7 @@ export default () => {
 	const {t} = useTranslation("authentication");
 	const {search} = useLocation();
 	const email = new URLSearchParams(search).get("email");
+	useMessage();
 
 	return (
 		<div className="sign-page sign-in">

@@ -3,6 +3,7 @@ import { eq } from "drizzle-orm";
 import { useTranslation } from "react-i18next";
 import { object, string } from "yup";
 import { Form, Input } from "~/common/components";
+import { useMessage } from "~/common/hooks/useMessage";
 import { badRequest, generateSalt, getFormDataValues, langLink } from "~/common/utils";
 import { db } from "~/drizzle/db.server";
 import { resetTokens, users } from "~/drizzle/schema.server";
@@ -32,10 +33,11 @@ export const action: ActionFunction = async ({request, params}) => {
 
 	if (!token || !userId) return badRequest({message: t("invalidParams")});
 
-	const user = await db.query.users.findFirst({
+	const user = db.query.users.findMany({
 		where: (user, {eq}) => eq(user.id, Number(userId)),
 		with: {resetToken: true},
-	});
+	})[0];
+
 	if (!user || !user.resetToken) return badRequest({message: t("invalidParams")});
 
 	const matches = await Bun.password.verify(user.resetToken.token, decodeURIComponent(token));
@@ -45,16 +47,16 @@ export const action: ActionFunction = async ({request, params}) => {
 	const salt = generateSalt();
 	const hashedPassword = await Bun.password.hash(values.password + salt);
 
-	await Promise.all([
-		db.update(users).set({password: hashedPassword, salt}).where(eq(users.id, user.id)).run(),
-		db.delete(resetTokens).where(eq(resetTokens.userId, user.id)).run(),
-	]);
+	db.update(users).set({password: hashedPassword, salt}).where(eq(users.id, user.id)).run();
+	db.delete(resetTokens).where(eq(resetTokens.userId, user.id)).run();
+
 	return redirect(langLink(params.lang, "sign-in"));
 };
 
 
 export default () => {
 	const {t} = useTranslation("authentication");
+	useMessage();
 
 	return (
 		<div className="sign-page sign-up">

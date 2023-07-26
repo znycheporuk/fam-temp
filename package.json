@@ -24,7 +24,6 @@
 		"i18next-http-backend": "^2.2.1",
 		"isbot": "^3.6.8",
 		"nodemailer": "^6.9.3",
-		"rc-notification": "^4.5.7",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-i18next": "^13.0.1",

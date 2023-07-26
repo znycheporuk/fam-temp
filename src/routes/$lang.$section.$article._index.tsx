@@ -1,8 +1,9 @@
 import { HeadersFunction, json, LoaderArgs, V2_MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
+import { ShouldRevalidateFunction, useLoaderData, useParams } from "@remix-run/react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { isDev } from "~/common/constants";
-import { forbidden, notFound, parseLang } from "~/common/utils";
+import { forbidden, notFound, notification, parseLang } from "~/common/utils";
 import { db } from "~/drizzle/db.server";
 import { i18n } from "~/services/i18n.server";
 import { getUserSession } from "~/services/session.server";
@@ -12,10 +13,15 @@ export const loader = async ({request, params}: LoaderArgs) => {
 	const session = await getUserSession(request);
 	const isContentManager = session.get("isContentManager");
 	// TODO: use findFirst instead of findMany when it will be fixed by drizzle
-	const [article] = await db.query.articles.findMany({
-		where: (a, {eq, and}) => and(eq(a.lang, parseLang(params.lang)), eq(a.section, params.section as any)),
+	const article = db.query.articles.findMany({
+		where: (a, {eq, and}) =>
+			and(
+				eq(a.lang, parseLang(params.lang)),
+				eq(a.section, params.section as any),
+				eq(a.slug, params.article as any),
+			),
 		columns: {title: true, description: true, keywords: true, html: true, articleLang: true, isDraft: true},
-	});
+	})[0];
 
 	if (!article) {
 		const t = await i18n.getFixedT(parseLang(params.lang), "server");
@@ -37,7 +43,7 @@ export const headers: HeadersFunction = ({loaderHeaders}) => {
 };
 
 export const meta: V2_MetaFunction = ({data}) => {
-	const {t} = useTranslation()
+	const {t} = useTranslation();
 	if (!data) {
 		return [
 			{title: "No Article"},
@@ -54,17 +60,20 @@ export const meta: V2_MetaFunction = ({data}) => {
 	];
 };
 
+export const shouldRevalidate: ShouldRevalidateFunction = ({currentUrl, nextUrl}) => {
+	return currentUrl.pathname !== nextUrl.pathname;
+};
 
 export default () => {
 	const article = useLoaderData<typeof loader>();
-	// const {lang} = useParams();
-	// const {t} = useTranslation();
+	const {lang} = useParams();
+	const {t} = useTranslation();
 
-	// useEffect(() => {
-	// 	if (parseLang(lang) !== article.articleLang) {
-	// 		message.info(t("articleOfDifferentLang"));
-	// 	}
-	// }, [article]);
+	useEffect(() => {
+		if (parseLang(lang) !== article.articleLang) {
+			notification.info(t("articleOfDifferentLang"));
+		}
+	}, [article]);
 
 	return (
 		<div className="page-width">

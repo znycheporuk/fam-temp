@@ -21,23 +21,23 @@ export const generateSiteMap = async () => {
 	const sectionUrls = sections.map(section => `
     <url>
       <loc>${origin}/uk/${section}</loc>
-      <xhtml:link rel='alternate' hreflang='uk' href='${origin}/uk/${section}'/>
-      <xhtml:link rel='alternate' hreflang='en' href='${origin}/en/${section}'/>
+      <xhtml:link rel="alternate" hreflang="uk" href="${origin}/uk/${section}"/>
+      <xhtml:link rel="alternate" hreflang="en" href="${origin}/en/${section}"/>
     </url>
     <url>
       <loc>${origin}/en/${section}</loc>
-      <xhtml:link rel='alternate' hreflang='en' href='${origin}/en/${section}'/>
-      <xhtml:link rel='alternate' hreflang='uk' href='${origin}/uk/${section}'/>
+      <xhtml:link rel="alternate" hreflang="en" href="${origin}/en/${section}"/>
+      <xhtml:link rel="alternate" hreflang="uk" href="${origin}/uk/${section}"/>
     </url>`);
 	const articlesUrls = articles.map(article => {
 		const oppositeLang = getOppositeLanguage(article.lang as TLang);
 		const alternate = hasAlternateUrl(article, articles)
-			? `<xhtml:link rel='alternate' hreflang='${oppositeLang}' href='${origin}/${oppositeLang}/${article.section}/${article.slug}'/>`
+			? `<xhtml:link rel="alternate" hreflang="${oppositeLang}" href="${origin}/${oppositeLang}/${article.section}/${article.slug}"/>`
 			: "";
 		return `
       <url>
         <loc>${origin}/${article.lang}/${article.section}/${article.slug}</loc>
-        <xhtml:link rel='alternate' hreflang='${article.lang}' href='${origin}/${article.lang}/${article.section}/${article.slug}'/>
+        <xhtml:link rel="alternate" hreflang="${article.lang}" href="${origin}/${article.lang}/${article.section}/${article.slug}"/>
         ${alternate}
       </url>`;
 	});

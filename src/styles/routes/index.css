@@ -126,19 +126,20 @@ h1, h2 {
 
 @media (min-width: 769px) {
 
-	@supports not selector(:has(.button)) {
+	@supports not selector(:has(:focus-visible,:active)) {
 		.specialities .card:nth-of-type(2) {
 			transform: scale(1.05);
 		}
+	}
+
+	.specialities:not(:has(.card:where(:hover, :focus-within))) .card:nth-of-type(2) {
+		transform: scale(1.05);
 	}
 
 	.specialities .card:hover, .specialities .card:has(:focus-visible,:active) {
 		transform: scale(1.07);
 	}
 
-	.specialities:not(:has(.card:hover, .card:has(:focus-visible,:active))) .card:nth-of-type(2) {
-		transform: scale(1.05);
-	}
 }
 
 @media (max-width: 768px) {

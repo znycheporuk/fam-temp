@@ -54,10 +54,10 @@ export const loader = async ({request}: LoaderArgs) => {
 	const polyfills = getPolyfills(request);
 
 	const userId = session.get("userId");
-	const user = userId ? (await db.query.users.findMany({
+	const user = userId ? db.query.users.findMany({
 		where: (user, {eq}) => eq(user.id, userId),
 		columns: {password: false, salt: false},
-	}))[0] : undefined;
+	})[0] : undefined;
 	const theme = getTheme(request);
 	return {user, polyfills, theme};
 };

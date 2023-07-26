@@ -1,0 +1,45 @@
+#notification {
+	line-height: 1.5;
+	top: var(--header-height);
+	left: 50%;
+	width: max-content;
+	margin: 0.5rem var(--sides-padding);
+	padding: 0.5rem 1rem;
+	transform: translateX(-50%);
+	animation-name: notificationFadeIn;
+	animation-duration: 0.3s;
+	animation-play-state: running;
+	animation-timing-function: cubic-bezier(0.55, 0, 0.55, 0.2);
+	color: var(--text-color);
+	border: transparent;
+	border-radius: var(--border-radius);
+	background: var(--secondary-background-color);
+	box-shadow: var(--box-shadow);
+	animation-fill-mode: both;
+
+	&.notification--leave {
+		animation-name: notificationFadeOut;
+	}
+}
+
+@keyframes notificationFadeIn {
+	0% {
+		opacity: 0;
+		top: calc(var(--header-height) - 1rem);
+	}
+	100% {
+		opacity: 1;
+		top: var(--header-height);
+	}
+}
+
+@keyframes notificationFadeOut {
+	0% {
+		opacity: 1;
+		top: var(--header-height);
+	}
+	100% {
+		opacity: 0;
+		top: calc(var(--header-height) - 1rem);
+	}
+}

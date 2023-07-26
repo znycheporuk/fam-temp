@@ -32,7 +32,7 @@ export const handle = {
 
 export const loader = async ({params}: LoaderArgs) => {
 	const lang = parseLang(params.lang);
-	
+
 	const news = db.query.news.findMany({
 		where: (n) => eq(n.lang, lang),
 		columns: {id: true, title: true, source: true, createdAt: true},

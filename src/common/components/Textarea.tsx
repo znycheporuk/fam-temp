@@ -18,7 +18,7 @@ export const Textarea = ({label, name, labelStyle, ...props}: IProps) => {
 		props.onChange?.(e);
 		setValue?.(name, e.target.value);
 	};
-	
+
 	const id = toKebabCase(name);
 	return (
 		<label className="grid" style={labelStyle}>

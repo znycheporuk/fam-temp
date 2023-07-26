@@ -29,28 +29,16 @@ const validationSchema = object({
 export const action: ActionFunction = async ({request, params}) => {
 	const [errors, values] = await getFormDataValues(validationSchema, request);
 	if (errors) return badRequest({errors});
-	const [session, [user], t] = await Promise.all([
+	const [session, t] = await Promise.all([
 		getUserSession(request),
-		// TODO: change to .findFirst() when drizzle-orm bug is fixed
-		db.query.users.findMany({
-			where: (u, {eq}) => eq(u.email, values.email),
-			columns: {
-				id: true,
-				email: true,
-				password: true,
-				salt: true,
-				active: true,
-			},
-			with: {
-				admin: true,
-				teacher: true,
-				student: true,
-				contentManager: true,
-			},
-		}),
-
 		i18n.getFixedT(parseLang(params.lang), "server"),
 	]);
+	// TODO: change to .findFirst() when drizzle-orm bug is fixed
+	const user = db.query.users.findMany({
+		where: (u, {eq}) => eq(u.email, values.email),
+		columns: {id: true, email: true, password: true, salt: true, active: true},
+		with: {admin: true, teacher: true, student: true, contentManager: true},
+	})[0];
 
 	if (!user || !await Bun.password.verify(values.password + user.salt, user.password)) return notFound({
 		errors: {

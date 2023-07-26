@@ -33,7 +33,7 @@ export const loader = async ({request, params}: LoaderArgs) => {
 	if (!existingSections.includes(section)) throw notFound("Such section does not exist");
 
 	const session = await getUserSession(request);
-	let articles = await db.query.articles.findMany({
+	let articles = db.query.articles.findMany({
 		where: (a, {eq, and}) => and(eq(a.lang, lang), eq(a.section, section)),
 		columns: {title: true, slug: true, description: true, isDraft: true},
 	});

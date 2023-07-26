@@ -38,30 +38,30 @@ export const action: ActionFunction = async ({request, params}) => {
 	const {role, group, superAdmin, ...values} = data;
 	const session = await getUserSession(request);
 
-	const user = await db.query.users.findFirst({where: (user, {eq}) => eq(user.email, values.email)});
+	const user = db.query.users.findMany({where: (user, {eq}) => eq(user.email, values.email)})[0];
 	if (user) return json({errors: {email: "User with such email already exists"}}, {status: 409});
 
 	const salt = generateSalt();
 	values.password = await Bun.password.hash(values.password + salt);
 
-	const [res] = await db.insert(users).values({...values, salt}).returning({userId: users.id}).all();
+	const res = db.insert(users).values({...values, salt}).returning({userId: users.id}).all()[0];
 	const userId = res?.userId as number;
 	session.set("userId", userId);
 	switch (role) {
 		case "admin":
-			await db.insert(admins).values({userId}).run();
+			db.insert(admins).values({userId}).run();
 			session.set("isAdmin", true);
 			session.set("isContentManager", true);
 			break;
 		case "contentManager":
-			await db.insert(contentManagers).values({userId}).run();
+			db.insert(contentManagers).values({userId}).run();
 			session.set("isContentManager", true);
 			break;
 		case "student":
-			await db.insert(students).values({userId, group: group as string}).run();
+			db.insert(students).values({userId, group: group as string}).run();
 			break;
 		case "teacher":
-			await db.insert(teachers).values({userId}).run();
+			db.insert(teachers).values({userId}).run();
 			session.set("isTeacher", true);
 			break;
 	}
