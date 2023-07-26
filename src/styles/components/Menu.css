@@ -90,7 +90,7 @@
 .menu__popup-content {
 	display: grid;
 	justify-content: start;
-	padding: 0 var(--sides-padding) var(--sides-padding);
+	padding: 0.3rem var(--sides-padding) var(--sides-padding);
 	gap: 1rem;
 }
 
@@ -98,6 +98,8 @@
 	font-family: 'DaysOne', sans-serif;
 	display: grid;
 	max-width: 100%;
-	padding: 0.2rem 0.5rem;
+	padding: 0 0 0 0.9rem;
+	list-style: initial;
+	color: var(--text-color);
 }
 

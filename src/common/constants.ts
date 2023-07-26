@@ -9,6 +9,8 @@ export const existingSections = [
 	"information",
 ] as const;
 
+export const themes = ["light", "auto", "dark"];
+
 export const i18nConfig = {
 	supportedLngs: ["en", "uk"],
 	fallbackLng: "uk",

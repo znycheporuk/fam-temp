@@ -18,7 +18,7 @@ export const ThemedIcon = ({mobileWidth = 0, className, path, ...props}: IThemed
 	const mobileLightSrc = `/icons/${path}-m.svg`;
 	const mobileDarkSrc = `/icons/${path}-m-dark.svg`;
 
-	return theme
+	return theme && theme !== "auto"
 		? (
 			<picture className={cx("themed-icon", className)}>
 				{!!mobileWidth && (

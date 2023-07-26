@@ -16,10 +16,9 @@ export const AuthButtons = () => {
 					<button>{t("signOut")}</button>
 				</Form>
 				{isAdmin(user) && <Link className="button" to={langLink(lang, "users")}>{t("users", {ns: "admin"})}</Link>}
-			</>) : (<>
-				<Link to={langLink(lang, "sign-in")} className="button">{t("signIn")}</Link>
-				<Link to={langLink(lang, "sign-up")} className="button">{t("signUp")}</Link>
-			</>)}
+			</>) : (
+				<Link to={langLink(lang, "sign-in")}>{t("signIn")}</Link>
+			)}
 		</div>
 	);
 };

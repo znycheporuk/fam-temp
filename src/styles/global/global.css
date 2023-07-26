@@ -27,6 +27,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-family: 'DaysOne', sans-serif;
 	margin-top: .7em;
 	scroll-margin-top: calc(var(--sides-padding) + var(--header-height));
+	text-wrap: balance;
 }
 
 

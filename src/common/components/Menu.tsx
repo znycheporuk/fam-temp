@@ -17,11 +17,21 @@ export const Menu = () => {
 				className="menu__popup"
 				// @ts-ignore
 				popover="auto"
+				onClick={e => {
+					// @ts-ignore
+					if (e.target?.name !== "theme") {
+						// @ts-ignore
+						document.getElementById("menu")?.hidePopover();
+					}
+				}}
 			>
 				<div className="menu__popup-content">
-					<LanguageSwitcher />
+					<div style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap"}}>
+						<LanguageSwitcher />
+						<AuthButtons />
+
+					</div>
 					{!xlg && <NavBar isPopup />}
-					<AuthButtons />
 					<ThemeSwitcher />
 				</div>
 			</div>

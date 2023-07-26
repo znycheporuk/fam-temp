@@ -11,9 +11,10 @@
 	"sectionDescription": "Section containing articles about topic: \"{{section}}\"",
 	"menu": {
 		"summary": "Menu",
-		"switchTo": {
-			"light": "switch to dark theme",
-			"dark": "switch to light theme"
+		"theme": {
+			"light": "Light",
+			"auto": "Auto",
+			"dark": "Dark"
 		},
 		"changeColor": "change primary color"
 	},
