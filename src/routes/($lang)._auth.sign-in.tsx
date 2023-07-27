@@ -38,6 +38,7 @@ export const action: ActionFunction = async ({request, params}) => {
 		where: (u, {eq}) => eq(u.email, values.email),
 		columns: {id: true, email: true, password: true, salt: true, active: true},
 		with: {admin: true, teacher: true, student: true, contentManager: true},
+		limit: 1,
 	})[0];
 
 	if (!user || !await Bun.password.verify(values.password + user.salt, user.password)) return notFound({

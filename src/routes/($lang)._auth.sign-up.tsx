@@ -38,7 +38,7 @@ export const action: ActionFunction = async ({request, params}) => {
 	const {role, group, superAdmin, ...values} = data;
 	const session = await getUserSession(request);
 
-	const user = db.query.users.findMany({where: (user, {eq}) => eq(user.email, values.email)})[0];
+	const user = db.query.users.findMany({where: (user, {eq}) => eq(user.email, values.email), limit: 1})[0];
 	if (user) return json({errors: {email: "User with such email already exists"}}, {status: 409});
 
 	const salt = generateSalt();

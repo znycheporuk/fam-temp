@@ -12,3 +12,4 @@ export { getOppositeLanguage, parseLang, langLink } from "~/common/utils/languag
 export { getRedirectTo } from "~/common/utils/getRedirectTo";
 export { toKebabCase } from "~/common/utils/toKebabCase";
 export { getOppositeTheme, getTheme } from "~/common/utils/theme";
+export { getAdminLinks } from "~/common/utils/getAdminLinks";

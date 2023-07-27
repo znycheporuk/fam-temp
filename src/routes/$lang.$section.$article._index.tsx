@@ -21,6 +21,7 @@ export const loader = async ({request, params}: LoaderArgs) => {
 				eq(a.slug, params.article as any),
 			),
 		columns: {title: true, description: true, keywords: true, html: true, articleLang: true, isDraft: true},
+		limit: 1,
 	})[0];
 
 	if (!article) {

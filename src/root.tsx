@@ -57,6 +57,8 @@ export const loader = async ({request}: LoaderArgs) => {
 	const user = userId ? db.query.users.findMany({
 		where: (user, {eq}) => eq(user.id, userId),
 		columns: {password: false, salt: false},
+		with: {admin: true, teacher: true, student: true, contentManager: true},
+		limit: 1,
 	})[0] : undefined;
 	const theme = getTheme(request);
 	return {user, polyfills, theme};

@@ -36,6 +36,7 @@ export const action: ActionFunction = async ({request, params}) => {
 	const user = db.query.users.findMany({
 		where: (user, {eq}) => eq(user.id, Number(userId)),
 		with: {resetToken: true},
+		limit: 1,
 	})[0];
 
 	if (!user || !user.resetToken) return badRequest({message: t("invalidParams")});

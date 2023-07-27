@@ -1,27 +1,31 @@
-import type { LoaderArgs, V2_MetaFunction } from "@remix-run/node";
+import type { LinksFunction, LoaderArgs, V2_MetaFunction } from "@remix-run/node";
 import { Link, useLoaderData } from "@remix-run/react";
 import { useTranslation } from "react-i18next";
 import { ArticleCard, ThemedIcon } from "~/common/components";
 import { breakpoints, existingSections } from "~/common/constants";
 import { useRootLoaderData } from "~/common/hooks";
-import { isContentManager, langLink, notFound, parseLang } from "~/common/utils";
+import { getAdminLinks, isContentManager, langLink, notFound, parseLang } from "~/common/utils";
 import { db } from "~/drizzle/db.server";
 import { getUserSession } from "~/services/session.server";
+import adminStyles from "~/styles/admin/section.css";
 import styles from "~/styles/routes/section/index.css";
 import smMdStyles from "~/styles/routes/section/index.sm.md.css";
 import xlgStyles from "~/styles/routes/section/index.xlg.css";
 
 
-export const links = () => [
+export const links: LinksFunction = () => [
 	{rel: "stylesheet", href: styles},
 	{rel: "stylesheet", href: smMdStyles, media: `(max-width: ${breakpoints.md}px)`},
 	{rel: "stylesheet", href: xlgStyles, media: `(min-width: ${breakpoints.md + 1}px)`},
 ];
 
-export const meta: V2_MetaFunction = ({params}) => {
+export const meta: V2_MetaFunction = ({params, matches}) => {
 	const {t} = useTranslation();
 
 	return [
+		...getAdminLinks(matches, [
+			{tagName: "link", rel: "stylesheet", href: adminStyles},
+		]),
 		{title: t(`header.${params.section}`)},
 		{property: "description", content: t("sectionDescription", {section: t(`header.${params.section}`)})},
 	];
